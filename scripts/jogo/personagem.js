@@ -8,6 +8,8 @@ class Personagem {
         this.alturaDaImagem = 270;
         this.matrizSprites = Array();
         this.frameAtual = 0;
+        this.alturaDoChao = 120;
+        this.deslocamento = 100;
 
         let indice = 0;
         let x;
@@ -30,12 +32,12 @@ class Personagem {
     exibe() {
 
         // image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
-        let dx = 50;
-        let zoom = 1.5;
+        let dx = this.deslocamento;
+        let zoom = 2;
         let tamanhox = this.larguraDaImagem / zoom;
         let tamanhoy = this.alturaDaImagem / zoom;
 
-        let dy = height - tamanhoy;
+        let dy = height - tamanhoy - this.alturaDoChao;
 
         let sx = this.matrizSprites[this.frameAtual][0];
         let sy = this.matrizSprites[this.frameAtual][1];
