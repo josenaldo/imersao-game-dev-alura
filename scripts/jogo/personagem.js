@@ -4,8 +4,8 @@ class Personagem {
         this.imagem = imagem;
         this.colunasDoSprite = 4;
         this.linhasDoSprite = 4;
-        this.larguraDaImagem = 220;
-        this.alturaDaImagem = 270;
+        this.larguraDaImagem = 420;
+        this.alturaDaImagem = 504;
         this.matrizSprites = Array();
         this.frameAtual = 0;
         this.alturaDoChao = 120;

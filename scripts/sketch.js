@@ -6,7 +6,7 @@ let somDoJogo;
 
 function preload() {
     imagemCenario = loadImage('imagens/cenario/cenario-piroto.png')
-    imagemPersonagem = loadImage('imagens/personagem/correndo.png')
+    imagemPersonagem = loadImage('imagens/personagem/piroto.png')
     somDoJogo = loadSound('sons/trilha_jogo.mp3')
 }
 
