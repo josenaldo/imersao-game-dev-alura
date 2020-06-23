@@ -76,3 +76,7 @@ relativo.
 ##### background(imagem_ou_cor)
 
 Carrega uma imagem ou uma cor no background
+
+## Ferramenta de Sprites
+
+* [https://www.piskelapp.com/](https://www.piskelapp.com/)
