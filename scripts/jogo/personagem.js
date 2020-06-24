@@ -14,9 +14,9 @@ class Personagem {
         let indice = 0;
         let x;
         let y;
-        for (let i = 0 ; i < this.colunasDoSprite ; i++) {
-            for (let j = 0 ; j < this.linhasDoSprite ; j++) {
-                indice = this.colunasDoSprite * i + j;
+        for (let i = 0 ; i < this.linhasDoSprite ; i++) {
+            for (let j = 0 ; j < this.colunasDoSprite ; j++) {
+                indice = this.linhasDoSprite * i + j;
 
                 x = this.larguraDaImagem * j;
                 y = this.alturaDaImagem * i;
@@ -24,8 +24,6 @@ class Personagem {
                 this.matrizSprites[indice] = [x, y];
             }
         }
-
-        console.log(this.matrizSprites);
 
     }
 
@@ -49,6 +47,8 @@ class Personagem {
             sx, sy,
             this.larguraDaImagem, this.alturaDaImagem
         );
+
+        this.anima();
     }
 
     anima() {
