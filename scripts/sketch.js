@@ -102,8 +102,8 @@ function draw() {
 
     if(personagem.estaColidindo(inimigoChifrus) || personagem.estaColidindo(inimigoBatus)){
         gameOver = true;
-        noLoop()
         somDoJogo.stop();
+        noLoop()
         image(imagemGameOver, 0, 0);
     }
 }
