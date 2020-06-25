@@ -52,8 +52,6 @@ class Animacao {
             this.alturaSprite
         );
 
-        console.log("ANIMOU")
-
         this.anima();
     }
 

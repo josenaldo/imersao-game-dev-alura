@@ -1,61 +1,37 @@
-class Personagem {
+class Personagem extends Animacao {
 
-    constructor(imagem) {
-        this.imagem = imagem;
-        this.colunasDoSprite = 4;
-        this.linhasDoSprite = 4;
-        this.larguraDaImagem = 420;
-        this.alturaDaImagem = 504;
-        this.matrizSprites = Array();
-        this.frameAtual = 0;
-        this.alturaDoChao = 120;
-        this.deslocamento = 100;
+    constructor(imagem, x, yDaBase, largura, altura,
+        larguraSprite, alturaSprite, colunasDoSprite = 4, linhasDoSprite = 4)  {
 
-        let indice = 0;
-        let x;
-        let y;
-        for (let i = 0 ; i < this.linhasDoSprite ; i++) {
-            for (let j = 0 ; j < this.colunasDoSprite ; j++) {
-                indice = this.linhasDoSprite * i + j;
+            let yInicial = height - altura - yDaBase;
 
-                x = this.larguraDaImagem * j;
-                y = this.alturaDaImagem * i;
+            super(imagem, x, yInicial, largura, altura, larguraSprite, alturaSprite, colunasDoSprite, linhasDoSprite);
 
-                this.matrizSprites[indice] = [x, y];
-            }
-        }
+            this.yInicial = yInicial;
+            this.y = yInicial;
 
+            this.velocidadeDoPulo = 0;
+            this.gravidade = 3;
     }
 
-    exibe() {
+    pula() {
+        this.velocidadeDoPulo =  -30;
+    }
 
-        // image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
-        let dx = this.deslocamento;
-        let zoom = 2;
-        let tamanhox = this.larguraDaImagem / zoom;
-        let tamanhoy = this.alturaDaImagem / zoom;
+    aplicaGravidade() {
+        this.y = this.y + this.velocidadeDoPulo;
 
-        let dy = height - tamanhoy - this.alturaDoChao;
+        this.velocidadeDoPulo = this.velocidadeDoPulo + this.gravidade;
 
-        let sx = this.matrizSprites[this.frameAtual][0];
-        let sy = this.matrizSprites[this.frameAtual][1];
+        if(this.y > this.yInicial){
+            this.y = this.yInicial;
+        }
 
-        image(
-            this.imagem,
-            dx, dy,
-            tamanhox, tamanhoy,
-            sx, sy,
-            this.larguraDaImagem, this.alturaDaImagem
-        );
-
-        this.anima();
+        console.log(this.velocidadeDoPulo)
     }
 
     anima() {
-        this.frameAtual++;
-
-        if(this.frameAtual >= this.matrizSprites.length - 1){
-            this.frameAtual = 0;
-        }
+        super.anima();
+        this.aplicaGravidade();
     }
 }
