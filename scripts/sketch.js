@@ -33,7 +33,7 @@ function keyPressed() {
         somDoPulo.play();
     }
 
-    if(key === 'ArrowDown' && gameOver) {
+    if(key === ' ' && gameOver) {
         gameOver = false;
         clear();
         reset();

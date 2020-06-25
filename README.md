@@ -77,6 +77,7 @@ relativo.
 
 Carrega uma imagem ou uma cor no background
 
-## Ferramenta de Sprites
+## Links importantes
 
-* [https://www.piskelapp.com/](https://www.piskelapp.com/)
+- [Ferramenta de sprites](https://www.piskelapp.com/)
+- [Bons sprites pra download](https://opengameart.org/users/bevouliincom)
