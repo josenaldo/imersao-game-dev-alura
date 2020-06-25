@@ -52,5 +52,6 @@ function draw() {
     if(personagem.estaColidindo(inimigo)){
         console.log("Colidiu")
         noLoop()
+        somDoJogo.stop();
     }
 }
