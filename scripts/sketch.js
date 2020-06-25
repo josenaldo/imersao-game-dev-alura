@@ -1,8 +1,16 @@
-let imagemCenario;
+let imagemCenarioCeu;
+let imagemCenarioMontanhas;
+let imagemCenarioArvores;
+let imagemCenarioChao;
+
+let cenarioCeu;
+let cenarioMontanhas;
+let cenarioArvores;
+let cenarioChao;
+
 let imagemPersonagem;
 let imagemInimigo;
 
-let cenario;
 let personagem;
 let iniimgo;
 let somDoJogo;
@@ -19,9 +27,13 @@ function keyPressed() {
 
 /** Carrega os assets do projeto. */
 function preload() {
-    imagemCenario = loadImage('imagens/cenario/cenario-piroto.png');
+    imagemCenarioCeu = loadImage('imagens/cenario/cenario-ceu.png');
+    imagemCenarioMontanhas = loadImage('imagens/cenario/cenario-montanhas.png');
+    imagemCenarioArvores = loadImage('imagens/cenario/cenario-arvores.png');
+    imagemCenarioChao = loadImage('imagens/cenario/cenario-chao.png');
+
     imagemPersonagem = loadImage('imagens/personagem/piroto.png');
-    imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
+    imagemInimigo = loadImage('imagens/inimigos/chifrus.png');
     somDoJogo = loadSound('sons/trilha_jogo.mp3');
     somDoPulo = loadSound('sons/pulo.wav');
 }
@@ -29,20 +41,31 @@ function preload() {
 /** Configura o jogo */
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    cenario = new Cenario(imagemCenario, 10);
-    personagem = new Personagem(imagemPersonagem, 50, ALTURA_D0_CHAO, 210, 252, 420, 504, 4, 4);
+
+    cenarioCeu = new Cenario(imagemCenarioCeu, 4);
+    cenarioMontanhas = new Cenario(imagemCenarioMontanhas, 6);
+    cenarioArvores = new Cenario(imagemCenarioArvores, 8);
+    cenarioChao = new Cenario(imagemCenarioChao, 10, height-150);
 
     inimigo = new Inimigo(imagemInimigo,
-        width - 100, height - ALTURA_D0_CHAO - 104, 104, 100, 104, 100, 4, 7);
+        width, height - ALTURA_D0_CHAO-109, 105, 109, 315, 329, 4, 7);
 
-    frameRate(30);
+    personagem = new Personagem(imagemPersonagem, 50, ALTURA_D0_CHAO, 210, 252, 420, 504, 4, 4);
+
+    frameRate(48);
     somDoJogo.loop();
 }
 
 /** Desenha o jogo, a cada iteração do game loop */
 function draw() {
-    cenario.move();
-    cenario.exibe();
+    cenarioCeu.move();
+    cenarioCeu.exibe();
+    cenarioMontanhas.move();
+    cenarioMontanhas.exibe();
+    cenarioArvores.move();
+    cenarioArvores.exibe();
+    cenarioChao.move();
+    cenarioChao.exibe();
 
     personagem.exibe();
 
