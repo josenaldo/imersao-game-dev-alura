@@ -27,11 +27,27 @@ class Personagem extends Animacao {
             this.y = this.yInicial;
         }
 
-        console.log(this.velocidadeDoPulo)
     }
 
     anima() {
         super.anima();
         this.aplicaGravidade();
+    }
+
+    estaColidindo(inimigo) {
+        let precisao = 0.6;
+
+        let colidiu = collideRectRect(
+            this.x,
+            this.y,
+            this.largura * precisao,
+            this.altura * precisao,
+            inimigo.x,
+            inimigo.y,
+            inimigo.altura * precisao,
+            inimigo.largura * precisao,
+        );
+
+        return colidiu;
     }
 }
