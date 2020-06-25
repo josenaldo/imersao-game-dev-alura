@@ -30,7 +30,7 @@ p5.disableFriendlyErrors = true;
 function keyPressed() {
     if (key === 'ArrowUp') {
         personagem.pula();
-        somDoPulo.play();
+       
     }
 
     if(key === ' ' && gameOver) {

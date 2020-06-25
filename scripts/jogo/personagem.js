@@ -21,6 +21,7 @@ class Personagem extends Animacao {
         if(this.contadorDePulo < 2){
             this.contadorDePulo++;
             this.velocidadeDoPulo =  -50;
+            somDoPulo.play();
         }
 
     }
