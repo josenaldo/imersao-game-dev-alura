@@ -23,7 +23,7 @@ class Personagem extends Animacao {
      * TODO: Melhorar esse construtor para usar uma classe SpriteMap, com
      * dos dados do sprite.
     */
-    constructor(imagem, x, variacaoY, largura, altura,
+    constructor(imagem, somDoPulo, x, variacaoY, largura, altura,
         larguraSprite, alturaSprite, colunasDoSprite = 4, linhasDoSprite = 4, alturaDoPulo = 30)  {
 
             let yInicial = height - altura - variacaoY;
@@ -43,6 +43,7 @@ class Personagem extends Animacao {
             this.maximoDePulos = 2;
 
             this.contadorDePulo = 0;
+            this.somDoPulo = somDoPulo;
     }
 
     pula() {
@@ -50,7 +51,7 @@ class Personagem extends Animacao {
         if(this.contadorDePulo < this.maximoDePulos){
             this.contadorDePulo++;
             this.velocidadeDoPulo = -this.alturaDoPulo;
-            somDoPulo.play();
+            this.somDoPulo.play();
         }
 
     }

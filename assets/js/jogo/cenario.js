@@ -15,15 +15,16 @@ class Cenario {
     }
 
     move() {
-        this.x1 = this.x1 - this.velocidade
-        this.x2 = this.x2 - this.velocidade
+        this.x1 = this.x1 - (this.velocidade * game.getVelocidadeBase());
+        this.x2 = this.x2 - (this.velocidade * game.getVelocidadeBase());
 
+        // TODO Verificar se isso aqui é uma POG. O simples fato de eu não ter essa certeza é um forte indício de que é POG. 
         if (this.x1 <= -width) {
-            this.x1 = width;
+            this.x1 = width - this.velocidade * game.getVelocidadeBase();
         }
 
         if (this.x2 <= -width) {
-            this.x2 = width;
+            this.x2 = width - this.velocidade * game.getVelocidadeBase();
         }
     }
 }

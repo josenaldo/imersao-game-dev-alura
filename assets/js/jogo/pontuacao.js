@@ -22,4 +22,8 @@ class Pontuacao {
     pontuarPorDistancia(){
         this.pontos = this.pontos + 0.2;
     }
+
+    getPontos() {
+        return parseInt(this.pontos);
+    }
 }

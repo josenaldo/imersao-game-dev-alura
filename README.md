@@ -112,3 +112,32 @@ Base color: #611F6A
   - #dfd2e1
   - #efe8f0
   - #ffffff
+
+## Músicas
+
+- Abertura - [Mega Man 2 "Dr. Wily's Wedding" by Jayson Litrio (http://ocremix.org)](https://ocremix.org/remix/OCR01025)
+- Game Over - [Song: Mega Man 2 "Chillout" by sedure (http://ocremix.org)](https://ocremix.org/remix/OCR01175)
+- Running 1 - [Mega Man 2 "Wily's Inferno" by Nutritious, WillRock](https://ocremix.org/remix/OCR02926)
+- Running 2 - [Song: Mega Man 2 "Leaf Storm" by AeroZ](https://ocremix.org/remix/OCR02224)
+- Running 3 - [Song: Mega Man 2 "Dr. Wily Symphonic" by Blue.Nocturne](https://ocremix.org/remix/OCR01889)
+- Running 4 - [Song: Mega Man 2 "Cranium Castle" by lazygecko](https://ocremix.org/remix/OCR00536)
+
+Musicas candidatas
+ - https://ocremix.org/remix/OCR00614
+ - https://ocremix.org/remix/OCR01893
+ - https://ocremix.org/remix/OCR00620
+ - https://ocremix.org/remix/OCR01477
+ - https://ocremix.org/remix/OCR01105 *
+ - https://ocremix.org/remix/OCR02649 *
+ - https://ocremix.org/remix/OCR00210
+ - https://ocremix.org/remix/OCR00062
+ - https://ocremix.org/remix/OCR00704
+
+Power ups
+
+- mais uma vida
+- mais 5 vidas
+- mais um pulo (1 min)
+- invencibilidade (30 seg)
+- Atrair letras
+- 

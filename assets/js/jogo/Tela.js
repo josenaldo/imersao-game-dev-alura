@@ -4,3 +4,7 @@
 // Tela de opcoes
 // tela de pause
 // tela de pontuacao
+
+class Tela {
+    
+}
