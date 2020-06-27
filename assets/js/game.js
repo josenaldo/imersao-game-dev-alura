@@ -52,6 +52,7 @@ function keyPressed() {
 
 /** Carrega os assets do projeto. */
 function preload() {
+
     imagemCenarioCeu = loadImage('assets/images/cenario/cenario-ceu.png');
     imagemCenarioMontanhas = loadImage('assets/images/cenario/cenario-montanhas.png');
     imagemCenarioArvores = loadImage('assets/images/cenario/cenario-arvores.png');
@@ -70,6 +71,7 @@ function preload() {
 
 /** Configura o jogo */
 function setup() {
+
     createCanvas(windowWidth, windowHeight);
     reset();
 }
@@ -82,9 +84,9 @@ function reset() {
 
     inimigos = Array();
 
-    inimigoChifrus = new Inimigo(imagemInimigoChifrus, width + 200, height -  ALTURA_D0_CHAO - 109, 105, 109, 315, 329, 4, 7);
+    inimigoChifrus = new Inimigo(imagemInimigoChifrus, width + 200, height - ALTURA_D0_CHAO - 109, 105, 109, 315, 329, 4, 7);
 
-    inimigoChifrusDark = new Inimigo(imagemInimigoChifrusDark, width, height -  ALTURA_D0_CHAO - 157, 157, 163, 315, 329, 4, 7, 10, 1000);
+    inimigoChifrusDark = new Inimigo(imagemInimigoChifrusDark, width, height - ALTURA_D0_CHAO - 157, 157, 163, 315, 329, 4, 7, 10, 1000);
 
     inimigoBatus = new Inimigo(imagemInimigoBatus, width + width / 2, height / 1.8, 200, 125, 401, 249, 3, 2, 10,);
 

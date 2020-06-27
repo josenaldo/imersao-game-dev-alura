@@ -81,3 +81,34 @@ Carrega uma imagem ou uma cor no background
 
 - [Ferramenta de sprites](https://www.piskelapp.com/)
 - [Bons sprites pra download](https://opengameart.org/users/bevouliincom)
+
+## Paleta de cores
+
+- [Paleta de cores](https://www.color-hex.com/color/611f6a)
+
+Base color: #611F6A
+
+- Shades of #611f6a
+  - #611f6a
+  - #571b5f
+  - #4d1854
+  - #43154a
+  - #3a123f
+  - #300f35
+  - #260c2a
+  - #1d091f
+  - #130615
+  - #09030a
+  - #000000
+- Tints of #611f6a
+  - #611f6a
+  - #703578
+  - #804b87
+  - #906296
+  - #a078a5
+  - #b08fb4
+  - #bfa5c3
+  - #cfbbd2
+  - #dfd2e1
+  - #efe8f0
+  - #ffffff
