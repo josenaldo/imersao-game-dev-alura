@@ -37,6 +37,7 @@ class Game {
 
         //Inimigos
         this.geradorDeInimigos = null;
+        this.geradorDeMoedas = null;
 
         //Sons
         this.somDoJogo = null;
@@ -76,6 +77,9 @@ class Game {
 
         this.geradorDeInimigos = new GeradorDeInimigos();
         this.geradorDeInimigos.preload();
+
+        this.geradorDeMoedas = new GeradorDeMoedas();
+        this.geradorDeMoedas.preload();
     }
 
     reset() {
@@ -88,6 +92,7 @@ class Game {
 
         this.personagem = new Personagem(this.imagemPersonagem, this.somDoPulo, 50, this.alturaDoChao, 210, 252, 420, 504, 4, 4);
 
+        this.geradorDeMoedas.setup();
         this.geradorDeInimigos.setup();
     }
 
@@ -231,6 +236,8 @@ class Game {
         this.cenarioArvores.exibe();
         this.cenarioChao.move();
         this.cenarioChao.exibe();
+        this.geradorDeMoedas.exibe();
+        this.geradorDeMoedas.estaColidindo(this.personagem);
         this.personagem.exibe();
         this.pontuacao.pontuarPorDistancia();
         this.pontuacao.exibe();
@@ -244,6 +251,10 @@ class Game {
 
     showGameOver() {
 
+    }
+
+    pegouMoeda() {
+        this.pontuacao.pegouMoeda();
     }
 
     aumentaDificuldade() {
