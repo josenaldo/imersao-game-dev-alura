@@ -2,7 +2,6 @@ class GeradorDeInimigos{
 
     constructor() {
         this.inimigos = Array();
-        this.maximoDeInimigos = 2;
 
         this.imagemInimigoChifrus = null;
         this.inimgoChifrus = null;
@@ -14,6 +13,7 @@ class GeradorDeInimigos{
         this.inimgoBatus = null;
 
         this.inimigos = null;
+
     }
 
     preload(){
@@ -24,24 +24,102 @@ class GeradorDeInimigos{
 
     setup() {
         this.inimigos = Array();
-        let alturaDoChao = game.getAlturaDoChao();
+        this.maximoDeInimigosNaTela = 1;
+        this.velocidadeMaxima = 15;
+        this.velocidadeMinima = 10;
+        this.delayMaximo = 500;
+        this.aceleracao = 1.5;
 
-        this.inimigoChifrus = new Inimigo(this.imagemInimigoChifrus, width + 200, height - alturaDoChao - 109, 105, 109, 315, 329, 4, 7, 10 * game.getVelocidadeBase());
-        this.inimigoChifrusDark = new Inimigo(this.imagemInimigoChifrusDark, width, height - alturaDoChao - 157, 157, 163, 315, 329, 4, 7, 10 * game.getVelocidadeBase(), 1000);
-        this.inimigoBatus = new Inimigo(this.imagemInimigoBatus, width + width / 2, height / 1.8, 200, 125, 401, 249, 3, 2, 10 * game.getVelocidadeBase());
+        this.alturaDoChao = game.getAlturaDoChao();
+    }
 
-        this.inimigos.push(this.inimigoChifrus);
-        this.inimigos.push(this.inimigoChifrusDark);
-        this.inimigos.push(this.inimigoBatus);
+    aumentaDificuldade() {
+        this.maximoDeInimigosNaTela++;
+        this.delayMaximo = this.delayMaximo + 500;
+        this.velocidadeMaxima = this.velocidadeMaxima + this.aceleracao;
+        console.log("Aumentando inimigos na tela para: " + this.maximoDeInimigosNaTela);
+        console.log("Velocidade máxima aumentando para: " + this.velocidadeMaxima);
+    }
+
+    getChifrus(velocidade, delay) {
+        return new Inimigo(
+            this.imagemInimigoChifrus,
+            width,
+            height - this.alturaDoChao - 109,
+            105,
+            109,
+            315,
+            329,
+            4,
+            7,
+            velocidade * game.getVelocidadeBase(),
+            delay
+        );
+    }
+
+    getChifrusDark(velocidade, delay) {
+        return new Inimigo(
+            this.imagemInimigoChifrusDark,
+            width,
+            height - this.alturaDoChao - 157,
+            157,
+            163,
+            315,
+            329,
+            4,
+            7,
+            velocidade * game.getVelocidadeBase(),
+            delay);
+    }
+
+    getBatus(velocidade, delay) {
+        return new Inimigo(this.imagemInimigoBatus,
+            width,
+            height / 1.8,
+            200,
+            125,
+            401,
+            249,
+            3,
+            2,
+            velocidade * game.getVelocidadeBase(),
+            delay);
+    }
+
+    getInimigoAleatorio() {
+        let numeroInimigo = Math.floor(Math.random() * Math.floor(3));
+        let velocidade = Math.random() * (this.velocidadeMaxima - this.velocidadeMinima) + this.velocidadeMinima;
+        let delay = Math.floor(Math.random() * Math.floor(this.delayMaximo));
+        switch(numeroInimigo){
+            case 0:
+                return this.getChifrus(velocidade, delay);
+            case 1:
+                return this.getChifrusDark(velocidade, delay);
+            case 2:
+                return this.getBatus(velocidade, delay);
+            default:
+                return this.getChifrus(velocidade, delay);
+        }
     }
 
     exibe(){
-        for (var i = 0; i < this.inimigos.length; ++i) {
-            var inimigo = this.inimigos[i];
-            inimigo.exibe();
-            inimigo.move();
-    
+
+        // se inimigos em tela < 2
+        if(this.inimigos.length < this.maximoDeInimigosNaTela) {
+            let inimigo = this.getInimigoAleatorio();
+            this.inimigos.push(inimigo);
         }
+
+        // exibe e move os inimigos
+        let inimigoEmJogo;
+        for (let i = 0; i < this.inimigos.length; ++i) {
+            inimigoEmJogo = this.inimigos[i];
+            inimigoEmJogo.exibe();
+            inimigoEmJogo.move();
+        }
+
+        this.inimigos = this.inimigos.filter(function(inimigo, index, arr){ return !inimigo.estaForaDaTela();});
+
     }
 
     estaColidindo(personagem) {

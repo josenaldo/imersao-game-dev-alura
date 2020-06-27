@@ -140,4 +140,4 @@ Power ups
 - mais um pulo (1 min)
 - invencibilidade (30 seg)
 - Atrair letras
-- 
+-

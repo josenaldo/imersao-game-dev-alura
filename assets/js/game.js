@@ -49,7 +49,6 @@ class Game {
 
         this.velocidadeBase = 1;
         this.aceleracao = 0.01;
-        this.marcoAceleracao = 1000;
 
         this.gameState = GameState.STARTED;
         this.previousGameState = GameState.STARTED;
@@ -224,11 +223,6 @@ class Game {
 
     showGameRunning() {
 
-        if(this.pontuacao.getPontos() > 0 && this.pontuacao.getPontos() % this.marcoAceleracao == 0) {
-            this.velocidadeBase = this.velocidadeBase + this.aceleracao;
-        }
-
-
         this.cenarioCeu.move();
         this.cenarioCeu.exibe();
         this.cenarioMontanhas.move();
@@ -250,6 +244,12 @@ class Game {
 
     showGameOver() {
 
+    }
+
+    aumentaDificuldade() {
+        console.log("Aumentou a dificuldade: " + this.pontuacao.getPontos())
+        this.geradorDeInimigos.aumentaDificuldade();
+        this.velocidadeBase = this.velocidadeBase + this.aceleracao;
     }
 
 }
