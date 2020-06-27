@@ -1,7 +1,3 @@
-// TODO: Adicionar barulho da moeda
-// TODO: A cada moeda, liberar uma letra aleatoria do nome capeta
-// TODO: Ao pegar uma moeda, aumentar pontuação
-// TODO: Ao pegar todas as moedas, encerrar a fase e começar outra
 class GeradorDeMoedas {
     constructor() {
         this.moedas = null;
@@ -14,14 +10,14 @@ class GeradorDeMoedas {
     setup() {
 
         this.moedas = [];
-        this.maximoDeMoedasNaTela = 3;
+        this.maximoDeMoedasNaTela = 2;
         this.velocidadeMaxima = 15;
         this.velocidadeMinima = 10;
         this.alturaMaxima = 700;
         this.alturaMinima = 100;
         this.delayMaximo = 500;
         this.aceleracao = 0;
-        this.chances = 1000;
+        this.chances = 50;
     }
 
 

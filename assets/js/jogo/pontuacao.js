@@ -1,5 +1,15 @@
 // TODO: Colocar a pontuacao no HuD
 // TODO: Adicionar pontuação das letras
+// TODO: Adicionar barulho da moeda
+// TODO: A cada moeda, liberar uma letra aleatoria do nome capeta
+// TODO: Ao pegar uma moeda, aumentar pontuação
+// TODO: Ao pegar todas as moedas, encerrar a fase e começar outra
+// TODO: Tocar um som ao pegar um nome completo
+// TODO: Animar o nome completo
+// TODO: Mostrar lista de palavras recuperadas no gameover
+// TODO: Salvar lista de palavras recuperadas entre cada partida
+// TODO: Eliminar palavras recuperadas da lista de palavras
+// TODO: Mostrar pontuação total do usuário
 class Pontuacao {
     constructor() {
         this.palavra = null;
