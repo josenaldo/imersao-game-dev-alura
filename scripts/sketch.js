@@ -30,10 +30,10 @@ p5.disableFriendlyErrors = true;
 function keyPressed() {
     if (key === 'ArrowUp') {
         personagem.pula();
-       
+
     }
 
-    if(key === ' ' && gameOver) {
+    if (key === ' ' && gameOver) {
         gameOver = false;
         clear();
         reset();
@@ -68,11 +68,11 @@ function reset() {
     cenarioCeu = new Cenario(imagemCenarioCeu, 4);
     cenarioMontanhas = new Cenario(imagemCenarioMontanhas, 6);
     cenarioArvores = new Cenario(imagemCenarioArvores, 8);
-    cenarioChao = new Cenario(imagemCenarioChao, 10, height-150);
+    cenarioChao = new Cenario(imagemCenarioChao, 10);
 
-    inimigoChifrus = new Inimigo(imagemInimigoChifrus, width, height - ALTURA_D0_CHAO-109, 105, 109, 315, 329, 4, 7);
+    inimigoChifrus = new Inimigo(imagemInimigoChifrus, width, height -  ALTURA_D0_CHAO - 109, 105, 109, 315, 329, 4, 7);
 
-    inimigoBatus = new Inimigo(imagemInimigoBatus, width + width/2 , height/1.8, 200, 125, 401, 249, 3, 2);
+    inimigoBatus = new Inimigo(imagemInimigoBatus, width + width / 2, height / 1.8, 200, 125, 401, 249, 3, 2, 10,);
 
     personagem = new Personagem(imagemPersonagem, 50, ALTURA_D0_CHAO, 210, 252, 420, 504, 4, 4);
 
@@ -100,7 +100,7 @@ function draw() {
     inimigoBatus.exibe();
     inimigoBatus.move();
 
-    if(personagem.estaColidindo(inimigoChifrus) || personagem.estaColidindo(inimigoBatus)){
+    if (personagem.estaColidindo(inimigoChifrus) || personagem.estaColidindo(inimigoBatus)) {
         gameOver = true;
         somDoJogo.stop();
         noLoop()

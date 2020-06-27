@@ -1,9 +1,30 @@
 class Personagem extends Animacao {
 
-    constructor(imagem, x, yDaBase, largura, altura,
+    /**
+     * Cria o personagem.
+     * @constructor
+     * @param {Image} imagem - imagem contendo os sprites do personagem
+     * @param {number} x - posição x do canto superior esquerdo do
+     *  personagem na tela
+     * @param {number} variacaoY - altura a partir da qual o personagem deve ser
+     *  adicionado. Pode ser a altura do chão, para personagem que anda no chão,
+     *  ou altura do vôo, para personagens que voam.
+     * @param {number} largura - largura do personagem na tela
+     * @param {number} altura - altura do personagem na tela
+     * @param {number} larguraSprite - largura do personagem no sprite
+     * @param {number} alturaSprite - altura do personagem no sprite
+     * @param {number} colunasDoSprite - número de colunas, na folha de sprite.
+     *  O padrão é 4.
+     * @param {number} linhasDoSprite - número de linhas do personagem no
+     *  sprite.
+     *
+     * TODO: Melhorar esse construtor para usar uma classe SpriteMap, com
+     * dos dados do sprite.
+    */
+    constructor(imagem, x, variacaoY, largura, altura,
         larguraSprite, alturaSprite, colunasDoSprite = 4, linhasDoSprite = 4)  {
 
-            let yInicial = height - altura - yDaBase;
+            let yInicial = height - altura - variacaoY;
 
             super(imagem, x, yInicial, largura, altura, larguraSprite, alturaSprite, colunasDoSprite, linhasDoSprite);
 

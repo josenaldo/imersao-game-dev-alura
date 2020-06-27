@@ -1,11 +1,11 @@
 class Cenario {
 
-    constructor(imagem, velocidade, y = 0) {
+    constructor(imagem, velocidade) {
         this.imagem = imagem;
         this.velocidade = velocidade;
         this.x1 = 0
         this.x2 = width;
-        this.y = y
+        this.y = 0
 
     }
 
