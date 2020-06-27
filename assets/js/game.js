@@ -28,6 +28,8 @@ let somDoPulo;
 let imagemGameOver;
 let gameOver = false;
 
+let pontuacao;
+
 const ALTURA_D0_CHAO = 120;
 p5.disableFriendlyErrors = true;
 
@@ -50,20 +52,20 @@ function keyPressed() {
 
 /** Carrega os assets do projeto. */
 function preload() {
-    imagemCenarioCeu = loadImage('imagens/cenario/cenario-ceu.png');
-    imagemCenarioMontanhas = loadImage('imagens/cenario/cenario-montanhas.png');
-    imagemCenarioArvores = loadImage('imagens/cenario/cenario-arvores.png');
-    imagemCenarioChao = loadImage('imagens/cenario/cenario-chao.png');
+    imagemCenarioCeu = loadImage('assets/images/cenario/cenario-ceu.png');
+    imagemCenarioMontanhas = loadImage('assets/images/cenario/cenario-montanhas.png');
+    imagemCenarioArvores = loadImage('assets/images/cenario/cenario-arvores.png');
+    imagemCenarioChao = loadImage('assets/images/cenario/cenario-chao.png');
 
-    imagemPersonagem = loadImage('imagens/personagem/piroto.png');
-    imagemInimigoChifrus = loadImage('imagens/inimigos/chifrus.png');
-    imagemInimigoChifrusDark = loadImage('imagens/inimigos/chifrus-dark.png');
-    imagemInimigoBatus = loadImage('imagens/inimigos/batus.png');
+    imagemPersonagem = loadImage('assets/images/personagem/piroto.png');
+    imagemInimigoChifrus = loadImage('assets/images/inimigos/chifrus.png');
+    imagemInimigoChifrusDark = loadImage('assets/images/inimigos/chifrus-dark.png');
+    imagemInimigoBatus = loadImage('assets/images/inimigos/batus.png');
 
-    imagemGameOver = loadImage('imagens/assets/game-over.png');
+    imagemGameOver = loadImage('assets/images/assets/game-over.png');
 
-    somDoJogo = loadSound('sons/trilha_jogo.mp3');
-    somDoPulo = loadSound('sons/pulo.wav');
+    somDoJogo = loadSound('assets/sounds/trilha_jogo.mp3');
+    somDoPulo = loadSound('assets/sounds/pulo.wav');
 }
 
 /** Configura o jogo */
@@ -92,6 +94,8 @@ function reset() {
 
     personagem = new Personagem(imagemPersonagem, 50, ALTURA_D0_CHAO, 210, 252, 420, 504, 4, 4);
 
+    pontuacao = new Pontuacao();
+
     frameRate(48);
     somDoJogo.loop();
 }
@@ -110,6 +114,9 @@ function draw() {
 
     personagem.exibe();
 
+    pontuacao.pontuarPorDistancia();
+    pontuacao.exibe();
+
     for (var i = 0; i < inimigos.length; ++i) {
         var inimigo = inimigos[i];
         inimigo.exibe();
@@ -122,6 +129,7 @@ function draw() {
 
         // TODO: Fazer o piroto piscar se acontecer uma colisão
         // TODO: Tocar um som de porrada na hora da colisão
+        // TODO: Diminuir a vida do Piroto e só dar game over quando a vida chegar ao fim
         if (personagem.estaColidindo(inimigo)) {
             gameOver = true;
             somDoJogo.stop();

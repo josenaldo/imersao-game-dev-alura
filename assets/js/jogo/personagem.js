@@ -1,3 +1,5 @@
+//TODO Adicionar o movimento de deslisar (dash)
+//TODO Adicionar animação de pulo
 class Personagem extends Animacao {
 
     /**
@@ -22,7 +24,7 @@ class Personagem extends Animacao {
      * dos dados do sprite.
     */
     constructor(imagem, x, variacaoY, largura, altura,
-        larguraSprite, alturaSprite, colunasDoSprite = 4, linhasDoSprite = 4)  {
+        larguraSprite, alturaSprite, colunasDoSprite = 4, linhasDoSprite = 4, alturaDoPulo = 30)  {
 
             let yInicial = height - altura - variacaoY;
 
@@ -32,16 +34,22 @@ class Personagem extends Animacao {
             this.y = yInicial;
 
             this.velocidadeDoPulo = 0;
-            this.gravidade = 4;
+            this.gravidade = 1.2;
+
+            // TODO Adicionar powerup de altura do pulo
+            this.alturaDoPulo = alturaDoPulo;
+
+            // TODO Adicionar powerup máximo de pulos
+            this.maximoDePulos = 2;
 
             this.contadorDePulo = 0;
     }
 
     pula() {
 
-        if(this.contadorDePulo < 2){
+        if(this.contadorDePulo < this.maximoDePulos){
             this.contadorDePulo++;
-            this.velocidadeDoPulo =  -50;
+            this.velocidadeDoPulo = -this.alturaDoPulo;
             somDoPulo.play();
         }
 
@@ -65,6 +73,7 @@ class Personagem extends Animacao {
         this.aplicaGravidade();
     }
 
+    // TODO Melhorar sistema de colisão
     estaColidindo(inimigo) {
         let precisao = 0.6;
 
