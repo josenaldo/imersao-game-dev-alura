@@ -14,8 +14,13 @@ let personagem;
 let imagemInimigoChifrus;
 let inimgoChifrus;
 
+let imagemInimigoChifrusDark;
+let inimgoChifrusDark;
+
 let imagemInimigoBatus;
 let inimgoBatus;
+
+let inimigos;
 
 let somDoJogo;
 let somDoPulo;
@@ -25,6 +30,8 @@ let gameOver = false;
 
 const ALTURA_D0_CHAO = 120;
 p5.disableFriendlyErrors = true;
+
+
 
 /** Captura os movimentos do mouse ou do teclado */
 function keyPressed() {
@@ -50,6 +57,7 @@ function preload() {
 
     imagemPersonagem = loadImage('imagens/personagem/piroto.png');
     imagemInimigoChifrus = loadImage('imagens/inimigos/chifrus.png');
+    imagemInimigoChifrusDark = loadImage('imagens/inimigos/chifrus-dark.png');
     imagemInimigoBatus = loadImage('imagens/inimigos/batus.png');
 
     imagemGameOver = loadImage('imagens/assets/game-over.png');
@@ -70,9 +78,17 @@ function reset() {
     cenarioArvores = new Cenario(imagemCenarioArvores, 8);
     cenarioChao = new Cenario(imagemCenarioChao, 10);
 
-    inimigoChifrus = new Inimigo(imagemInimigoChifrus, width, height -  ALTURA_D0_CHAO - 109, 105, 109, 315, 329, 4, 7);
+    inimigos = Array();
+
+    inimigoChifrus = new Inimigo(imagemInimigoChifrus, width + 200, height -  ALTURA_D0_CHAO - 109, 105, 109, 315, 329, 4, 7);
+
+    inimigoChifrusDark = new Inimigo(imagemInimigoChifrusDark, width, height -  ALTURA_D0_CHAO - 157, 157, 163, 315, 329, 4, 7, 10, 1000);
 
     inimigoBatus = new Inimigo(imagemInimigoBatus, width + width / 2, height / 1.8, 200, 125, 401, 249, 3, 2, 10,);
+
+    inimigos.push(inimigoChifrus);
+    inimigos.push(inimigoChifrusDark);
+    inimigos.push(inimigoBatus);
 
     personagem = new Personagem(imagemPersonagem, 50, ALTURA_D0_CHAO, 210, 252, 420, 504, 4, 4);
 
@@ -94,16 +110,24 @@ function draw() {
 
     personagem.exibe();
 
-    inimigoChifrus.exibe();
-    inimigoChifrus.move();
+    for (var i = 0; i < inimigos.length; ++i) {
+        var inimigo = inimigos[i];
+        inimigo.exibe();
+        inimigo.move();
 
-    inimigoBatus.exibe();
-    inimigoBatus.move();
+    }
 
-    if (personagem.estaColidindo(inimigoChifrus) || personagem.estaColidindo(inimigoBatus)) {
-        gameOver = true;
-        somDoJogo.stop();
-        noLoop()
-        image(imagemGameOver, 0, 0);
+    for (var i = 0; i < inimigos.length; ++i) {
+        var inimigo = inimigos[i];
+
+        // TODO: Fazer o piroto piscar se acontecer uma colisão
+        // TODO: Tocar um som de porrada na hora da colisão
+        if (personagem.estaColidindo(inimigo)) {
+            gameOver = true;
+            somDoJogo.stop();
+            noLoop()
+            image(imagemGameOver, 0, 0);
+            break;
+        }
     }
 }
