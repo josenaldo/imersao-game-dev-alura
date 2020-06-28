@@ -107,8 +107,8 @@ class Personagem extends Animacao {
         }
 
         let colidiu = collideRectCircle(
-            inimigo.x,
-            inimigo.y,
+            inimigo.x + (inimigo.largura - (inimigo.largura * precisaoLarguraInimigo))/2,
+            inimigo.y + (inimigo.altura - (inimigo.altura * precisaoLarguraInimigo))/2,
             inimigo.largura * precisaoLarguraInimigo,
             inimigo.altura * precisaoAlturaInimigo,
 
