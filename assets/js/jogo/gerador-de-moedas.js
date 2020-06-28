@@ -5,6 +5,7 @@ class GeradorDeMoedas {
 
     preload(){
         this.imagemMoeda = loadImage('assets/images/items/moeda.png');
+        this.somDaMoeda = loadSound('assets/sounds/moeda.mp3');
     }
 
     setup() {
@@ -24,6 +25,7 @@ class GeradorDeMoedas {
     getMoeda(altura, velocidade, delay) {
         return new Moeda(
             this.imagemMoeda,
+            this.somDaMoeda,
             width,
             altura,
             100,
