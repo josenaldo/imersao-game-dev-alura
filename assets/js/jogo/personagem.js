@@ -77,12 +77,12 @@ class Personagem extends Animacao {
     // TODO Melhorar sistema de colisão
     estaColidindo(inimigo) {
 
-        let precisaoAlturaPersonagem = 0.7;
+        let precisaoAlturaPersonagem = 0.9;
         let precisaoLarguraPersonagem = 0.6;
         let precisaoAlturaInimigo = 0.7;
         let precisaoLarguraInimigo = 0.7;
 
-        rectMode(CENTER);
+        // rectMode(CORNER);
         ellipseMode(CENTER);
 
         if(game.isDebug()) {
@@ -98,8 +98,8 @@ class Personagem extends Animacao {
             )
 
             rect(
-                inimigo.x + inimigo.largura/2,
-                inimigo.y + inimigo.altura/2,
+                inimigo.x + (inimigo.largura - (inimigo.largura * precisaoLarguraInimigo))/2,
+                inimigo.y + (inimigo.altura - (inimigo.altura * precisaoLarguraInimigo))/2,
                 inimigo.largura * precisaoLarguraInimigo,
                 inimigo.altura * precisaoAlturaInimigo,
             )
@@ -107,8 +107,8 @@ class Personagem extends Animacao {
         }
 
         let colidiu = collideRectCircle(
-            inimigo.x + inimigo.largura/2,
-            inimigo.y + inimigo.altura/2,
+            inimigo.x,
+            inimigo.y,
             inimigo.largura * precisaoLarguraInimigo,
             inimigo.altura * precisaoAlturaInimigo,
 

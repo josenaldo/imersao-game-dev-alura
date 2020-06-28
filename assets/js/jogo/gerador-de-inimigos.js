@@ -27,6 +27,10 @@ class GeradorDeInimigos{
         this.maximoDeInimigosNaTela = 1;
         this.velocidadeMaxima = 15;
         this.velocidadeMinima = 10;
+
+        this.alturaMaxima = 600;
+        this.alturaMinima = 100;
+
         this.delayMaximo = 500;
         this.aceleracao = 1.5;
 
@@ -73,9 +77,11 @@ class GeradorDeInimigos{
     }
 
     getBatus(velocidade, delay) {
+        let altura = Math.random() * (this.alturaMaxima - this.alturaMinima) + this.alturaMinima;
+
         return new Inimigo(this.imagemInimigoBatus,
             width,
-            height / 1.8,
+            altura,
             200,
             125,
             401,
