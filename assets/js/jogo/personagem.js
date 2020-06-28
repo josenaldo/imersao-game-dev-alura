@@ -76,18 +76,49 @@ class Personagem extends Animacao {
 
     // TODO Melhorar sistema de colisão
     estaColidindo(inimigo) {
-        let precisao = 0.6;
 
-        let colidiu = collideRectRect(
-            this.x,
-            this.y,
-            this.largura * precisao,
-            this.altura * precisao,
-            inimigo.x,
-            inimigo.y,
-            inimigo.altura * precisao,
-            inimigo.largura * precisao,
+        let precisaoAlturaPersonagem = 0.7;
+        let precisaoLarguraPersonagem = 0.6;
+        let precisaoAlturaInimigo = 0.7;
+        let precisaoLarguraInimigo = 0.7;
+
+        rectMode(CENTER);
+        ellipseMode(CENTER);
+
+        if(game.isDebug()) {
+
+            noFill();
+            stroke(255, 204, 0);
+            strokeWeight(4);
+            ellipse(
+                this.x + this.largura/2,
+                this.y + this.altura/2,
+                this.largura * precisaoLarguraPersonagem,
+                this.altura * precisaoAlturaPersonagem,
+            )
+
+            rect(
+                inimigo.x + inimigo.largura/2,
+                inimigo.y + inimigo.altura/2,
+                inimigo.largura * precisaoLarguraInimigo,
+                inimigo.altura * precisaoAlturaInimigo,
+            )
+            noStroke();
+        }
+
+        let colidiu = collideRectCircle(
+            inimigo.x + inimigo.largura/2,
+            inimigo.y + inimigo.altura/2,
+            inimigo.largura * precisaoLarguraInimigo,
+            inimigo.altura * precisaoAlturaInimigo,
+
+            this.x + this.largura/2,
+            this.y + this.altura/2,
+            this.largura * precisaoLarguraPersonagem,
+            this.altura * precisaoAlturaPersonagem,
         );
+
+        rectMode(CORNER);
 
         return colidiu;
     }

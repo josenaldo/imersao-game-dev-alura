@@ -54,6 +54,8 @@ class Game {
         this.gameState = GameState.STARTED;
         this.previousGameState = GameState.STARTED;
 
+        this.debug = false;
+
     }
 
     preload() {
@@ -120,6 +122,11 @@ class Game {
     }
 
     keyPressed(key) {
+
+        if(key == 'd') {
+            this.debug = !this.debug;
+        }
+
         switch (this.gameState) {
             case GameState.STARTED:
                 this.setStateGameRunning();
@@ -263,6 +270,9 @@ class Game {
         this.velocidadeBase = this.velocidadeBase + this.aceleracao;
     }
 
+    isDebug() {
+        return this.debug;
+    }
 }
 
 
