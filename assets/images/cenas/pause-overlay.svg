@@ -17,7 +17,7 @@
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="tela-game-over.svg"
-   inkscape:export-filename="D:\repositorios\imersao-game-dev-alura\assets\images\telas\tela-game-over.png"
+   inkscape:export-filename="D:\repositorios\imersao-game-dev-alura\assets\images\telas\cena-pause.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
@@ -52,9 +52,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="582.8947"
-     inkscape:cy="543.20779"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="-471.16948"
+     inkscape:cy="864.36824"
      inkscape:document-units="mm"
      inkscape:current-layer="layer4"
      showgrid="false"
@@ -94,17 +94,6 @@
        height="159.80833"
        x="-853.36273"
        y="72.205856" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:108.22392273px;line-height:1.25;font-family:Shlop;-inkscape-font-specification:'Shlop, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#611f6a;fill-opacity:1;stroke:none;stroke-width:2.14499998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
-       x="-599.76691"
-       y="181.81749"
-       id="text905"><tspan
-         sodipodi:role="line"
-         id="tspan903"
-         x="-599.76691"
-         y="181.81749"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:108.22392273px;font-family:Shlop;-inkscape-font-specification:'Shlop, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#611f6a;fill-opacity:1;stroke:none;stroke-width:2.14499998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;">Game Over</tspan></text>
     <image
        y="325.578"
        x="-727.60822"
@@ -114,16 +103,5 @@
        preserveAspectRatio="none"
        height="103.45208"
        width="269.34583" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.40491676px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#43154a;fill-opacity:1;stroke:none;stroke-width:0.465;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
-       x="-598.61884"
-       y="217.5567"
-       id="text920"><tspan
-         sodipodi:role="line"
-         id="tspan918"
-         x="-598.61884"
-         y="217.5567"
-         style="fill:#43154a;fill-opacity:1;stroke:none;stroke-width:0.465;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;">Aperte espaço para tentar novamente.</tspan></text>
   </g>
 </svg>

@@ -13,8 +13,13 @@ class Configuracoes {
         this.maximoDeMoedasNaTela = 1;
 
         this.fontePrincipal = 'assets/fonts/monsteramabold.ttf';
+        this.font = null;
     }
 
+    preload() {
+        this.font = loadFont(this.fontePrincipal);
+
+    }
     toggleDebug() {
         this.debug = !this.debug;
     }

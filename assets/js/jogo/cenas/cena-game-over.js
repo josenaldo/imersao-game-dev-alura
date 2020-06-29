@@ -10,7 +10,8 @@ class CenaGameOver {
 
     preload() {
         //console.log("CenaGameOver: preload");
-        this.imagemGameOver = loadImage('assets/images/telas/tela-game-over.png');
+        this.font =jogo.configuracoes.font;
+        this.imagemGameOver = loadImage('assets/images/cenas/pause-overlay.png');
         this.somDoGameOver = loadSound('assets/sounds/game-over.mp3');
     }
 
@@ -25,7 +26,9 @@ class CenaGameOver {
     draw() {
         //console.log("CenaGameOver: draw");
         this.somDoGameOver.loop();
-        image(this.imagemGameOver, 0, 0, width, height);
+        this._exibeImagemDeFundo();
+        this._exibeTexto();
+
         noLoop();
     }
 
@@ -53,5 +56,26 @@ class CenaGameOver {
         //console.log("CenaInicial: mousePressed")
         this.next = "cenaInicial";
         jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
+    }
+
+    _exibeImagemDeFundo() {
+        imageMode(CENTER)
+        image(this.imagemGameOver,  width / 2, height / 2, width, height);
+        imageMode(CORNER)
+    }
+
+    _exibeTexto() {
+        textFont(this.font);
+
+        let c = color('#1d091f');
+        fill(c);
+
+        textAlign(CENTER, CENTER);
+        textSize(250);
+        text("GAME OVER", width / 2, height / 2);
+
+        textAlign(CENTER, TOP);
+        textSize(50);
+        text("Aperte P para voltar ao jogo ou Enter para voltar à tela inicial", width / 2, height / 4);
     }
 }

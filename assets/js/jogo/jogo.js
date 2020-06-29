@@ -9,6 +9,7 @@ class Jogo {
     }
 
     preload() {
+        this.configuracoes.preload();
         this.gerenciadorDeCenas.preload();
         this.gerenciadorDePontuacao.preload();
     }

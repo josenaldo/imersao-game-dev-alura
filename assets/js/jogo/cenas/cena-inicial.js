@@ -11,10 +11,8 @@ class CenaInicial {
     preload() {
         //console.log("CenaInicial: preload")
         this.somDoInicio = loadSound('assets/sounds/start-game.mp3');
-        this.imagemGameStart = loadImage('assets/images/telas/tela-inicio.png');
-        this.font = loadFont(jogo.configuracoes.fontePrincipal)
-
-
+        this.imagemGameStart = loadImage('assets/images/cenas/cena-inicio.png');
+        this.font =jogo.configuracoes.font;
     }
 
     setup() {
@@ -59,11 +57,12 @@ class CenaInicial {
         let c = color('#bfa5c3');
         fill(c);
 
-        textAlign(CENTER);
+        textAlign(CENTER, CENTER);
         textSize(250);
-        text("Se pica, Piroto!", width / 2, height / 3);
+        text("Se pica, Piroto!", width / 2, height / 2);
 
+        textAlign(CENTER, TOP);
         textSize(50);
-        text("Aperte qualquer botão para continuar", width / 2, height / 2);
+        text("Aperte qualquer botão para continuar", width / 2, height / 4);
     }
 }
