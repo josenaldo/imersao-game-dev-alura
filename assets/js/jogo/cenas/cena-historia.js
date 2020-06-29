@@ -28,4 +28,9 @@ class CenaHistoria{
     keyPressed(key) {
         //console.log("CenaHistoria: keyPressed")
     }
+
+    mousePressed(mouseX, mouseY) {
+        //console.log("CenaInicial: mousePressed")
+        jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
+    }
 }

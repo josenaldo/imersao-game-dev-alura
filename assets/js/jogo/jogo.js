@@ -29,7 +29,10 @@ class Jogo {
         }
 
         this.gerenciadorDeCenas.keyPressed(key);
+    }
 
+    mousePressed(mouseX, mouseY) {
+        this.gerenciadorDeCenas.mousePressed(mouseX, mouseY);
     }
 
     pegouMoeda() {

@@ -44,6 +44,11 @@ class CenaInicial {
         jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
     }
 
+    mousePressed(mouseX, mouseY) {
+        //console.log("CenaInicial: mousePressed")
+        jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
+    }
+
     _exibeImagemDeFundo() {
         image(this.imagemGameStart, 0, 0, width, height);
     }

@@ -40,13 +40,19 @@ class CenaGameOver {
         //console.log("CenaGameOver: keyPressed");
 
         if(key === ' ') {
-            this.next = "cenaFase"
+            this.next = "cenaFase";
             jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
         }
 
         if(key === 'Enter') {
-            this.next = "cenaInicial"
+            this.next = "cenaInicial";
             jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
         }
+    }
+
+    mousePressed(mouseX, mouseY) {
+        //console.log("CenaInicial: mousePressed")
+        this.next = "cenaInicial";
+        jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
     }
 }

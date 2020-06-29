@@ -47,4 +47,8 @@ class GerenciadorDeCenas {
     keyPressed(key) {
         this.cenas[this.cenaAtual].keyPressed(key);
     }
+
+    mousePressed(mouseX, mouseY) {
+        this.cenas[this.cenaAtual].mousePressed(mouseX, mouseY);
+    }
 }

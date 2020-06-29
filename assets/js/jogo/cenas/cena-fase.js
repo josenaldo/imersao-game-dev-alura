@@ -158,4 +158,14 @@ class CenaFase {
         }
 
     }
+
+    mousePressed(mouseX, mouseY) {
+        // if (mouseButton === LEFT) {
+            this.personagem.pula();
+        // }
+        // if (mouseButton === RIGHT) {
+        //     this.togglePause();
+        // }
+
+    }
 }
