@@ -27,6 +27,8 @@ class Jogo {
 
         if(key == 'd') {
             this.configuracoes.toggleDebug();
+        }else if(key == 'c') {
+            this.configuracoes.toggleColisaoInimigo();
         }
 
         this.gerenciadorDeCenas.keyPressed(key);

@@ -120,7 +120,9 @@ class CenaFase {
         this.gerenciadorDePontuacao.pontuarPorDistancia();
         this.gerenciadorDePontuacao.draw();
 
-        this.gerenciadorDeInimigos.estaColidindo(this.personagem);
+        if(jogo.configuracoes.colisaoInimigoLigada) {
+            this.gerenciadorDeInimigos.estaColidindo(this.personagem);
+        }
         this.gerenciadorDeInimigos.draw();
 
     }

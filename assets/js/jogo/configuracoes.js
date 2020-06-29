@@ -14,6 +14,8 @@ class Configuracoes {
 
         this.fontePrincipal = 'assets/fonts/monsteramabold.ttf';
         this.font = null;
+
+        this.colisaoInimigoLigada = true;
     }
 
     preload() {
@@ -22,5 +24,9 @@ class Configuracoes {
     }
     toggleDebug() {
         this.debug = !this.debug;
+    }
+
+    toggleColisaoInimigo() {
+        this.colisaoInimigoLigada = !this.colisaoInimigoLigada;
     }
 }
