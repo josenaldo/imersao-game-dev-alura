@@ -165,8 +165,5 @@ class CenaFase {
             this.togglePause();
         }
 
-        if(key === 's') {
-            this.gerenciadorDeMoedas.sorte = 4;
-        }
     }
 }

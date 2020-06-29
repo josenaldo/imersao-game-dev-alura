@@ -9,7 +9,7 @@ class Configuracoes {
 
         this.frameRate = 48;
 
-        this.chancesDeMoedas = 200;
+        this.chancesDeMoedas = 100;
         this.maximoDeMoedasNaTela = 1;
     }
 

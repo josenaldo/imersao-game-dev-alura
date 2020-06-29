@@ -81,7 +81,6 @@ class GerenciadorDeMoedas {
     // TODO: mudar esse metodo exibe para draw
     draw() {
 
-
         // se inimigos em tela < 2
         if (this.filaDeMoedas.length < jogo.configuracoes.maximoDeMoedasNaTela) {
             let moeda = this.getMoedaAleatorio();
@@ -103,14 +102,15 @@ class GerenciadorDeMoedas {
             moedaEmJogo = this.filaDeMoedas[i];
             if (moedaEmJogo.estaForaDaTela() || moedaEmJogo.isColetada()) {
                 this.filaDeMoedas.splice(i, 1);
+                moedaEmJogo.libera();
                 this.moedas.push(moedaEmJogo);
             }
         }
     }
 
     estaColidindo(personagem) {
-        for (let i = 0, n = this.moedas.length; i < n; ++i) {
-            var moeda = this.moedas[i];
+        for (let i = 0, n = this.filaDeMoedas.length; i < n; ++i) {
+            var moeda = this.filaDeMoedas[i];
 
             // TODO: Fazer o piroto piscar se acontecer uma colisão
             // TODO: Tocar um som de porrada na hora da colisão

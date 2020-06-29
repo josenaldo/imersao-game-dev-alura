@@ -23,6 +23,8 @@ class GerenciadorDeInimigos {
         this.imagemInimigoChifrus = loadImage('assets/images/inimigos/chifrus.png');
         this.imagemInimigoChifrusDark = loadImage('assets/images/inimigos/chifrus-dark.png');
         this.imagemInimigoBatus = loadImage('assets/images/inimigos/batus.png');
+
+        jogo.gerenciadorDeEventos.assinar("atingiu-marco-de-pontuacao", this, "aumentaDificuldade");
     }
 
     setup() {
@@ -104,10 +106,16 @@ class GerenciadorDeInimigos {
     getInimigoAleatorio() {
         console.log("Gerando novo inimigo aleatorio");
 
-        let numeroInimigo = Math.floor(Math.random() * Math.floor(3));
+        let numeroInimigo = Math.floor(Math.random() * Math.floor(this.inimigos.length));
 
         let inimigo = this.inimigos[numeroInimigo];
+        this.inimigos.splice(numeroInimigo, 1);
 
+        inimigo = this.resetInimigo(inimigo);
+        return inimigo;
+    }
+
+    resetInimigo(inimigo) {
         inimigo.x = width;
         inimigo.randomizeY(this.alturaMinima, this.alturaMaxima);
         inimigo.randomizeVelocidade(this.velocidadeMinima, this.velocidadeMaxima);
@@ -116,7 +124,26 @@ class GerenciadorDeInimigos {
         return inimigo;
     }
 
+    criaNovoInimigo(){
+        let numeroInimigo = Math.floor(Math.random() * Math.floor(3));
+
+        switch(numeroInimigo){
+            case 0:
+                return this.getChifrus(0,0);
+            case 1:
+                return this.getChifrusDark(0,0);
+            case 2:
+                return this.getBatus(0,0);
+            default:
+                return this.getChifrus(0,0);
+        }
+    }
+
     draw() {
+
+        if (this.inimigos.length +  this.filaDeInimigos.length< this.maximoDeInimigosNaTela) {
+            this.inimigos.push(this.criaNovoInimigo());
+        }
 
         // se inimigos em tela < 2
         if (this.filaDeInimigos.length < this.maximoDeInimigosNaTela) {
@@ -136,13 +163,14 @@ class GerenciadorDeInimigos {
             inimigoEmJogo = this.filaDeInimigos[i];
             if(inimigoEmJogo.estaForaDaTela()) {
                 this.filaDeInimigos.splice(i,1);
+                this.inimigos.push(inimigoEmJogo);
             }
         }
     }
 
     estaColidindo(personagem) {
-        for (let i = 0, n = this.inimigos.length; i < n; ++i) {
-            var inimigo = this.inimigos[i];
+        for (let i = 0, n = this.filaDeInimigos.length; i < n; ++i) {
+            var inimigo = this.filaDeInimigos[i];
 
             // TODO: Fazer o piroto piscar se acontecer uma colisão
             // TODO: Tocar um som de porrada na hora da colisão

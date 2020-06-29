@@ -30,6 +30,10 @@ class Moeda extends Animacao {
         this.somDaMoeda.play();
     }
 
+    libera() {
+        this.coletada = false;
+    }
+
     estaForaDaTela() {
         return this.x < -this.largura - this.delay;
     }

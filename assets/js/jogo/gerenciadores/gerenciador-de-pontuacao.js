@@ -15,6 +15,7 @@ class GerenciadorDePontuacao {
 
         this.palavra = null;
         this.wordDashes = null;
+        this.pontuacaoPorDistanciaInicial = 0.25;
     }
 
     preload() {
@@ -35,6 +36,9 @@ class GerenciadorDePontuacao {
         this.pontos = 0;
         this.creu = 1;
         this.marcos = [200, 400, 600, 800];
+        this.pontuacaoPorPalavra = 100;
+        this.pontuacaoPorDistancia = this.pontuacaoPorDistanciaInicial;
+
     }
 
     resetNomeDoCapeta() {
@@ -54,7 +58,7 @@ class GerenciadorDePontuacao {
 
         text("Pontos: " + parseInt(this.pontos), width-10, 50);
         text("Créu: " + this.creu, width-10, 100);
-        text("Nome do capeta: " + this.getWordDashes(), width-10, 150);
+        text(this.getWordDashes(), width-10, 150);
     }
 
     adicionarPontos(pontuacao){
@@ -62,8 +66,9 @@ class GerenciadorDePontuacao {
         this.verificaMarco();
     }
 
+    // TODO Adicionar powerUp que dá mais pontuacao por distancia
     pontuarPorDistancia(){
-        this.pontos = this.pontos + 0.2;
+        this.pontos = this.pontos + this.pontuacaoPorDistancia;
         this.verificaMarco();
     }
 
@@ -72,7 +77,7 @@ class GerenciadorDePontuacao {
         this.contadorDeMoedas++;
 
         if(this.getWordDashes() === this.palavra) {
-            this.pontos += this.palavra.length * 100;
+            this.pontos += this.palavra.length * this.pontuacaoPorPalavra;
             this.resetNomeDoCapeta();
         }
 
@@ -86,6 +91,8 @@ class GerenciadorDePontuacao {
             this.marcos.shift();
             this.creu++;
             novoMarco = this.marcos[this.marcos.length -1] * 2;
+            this.pontuacaoPorPalavra = this.pontuacaoPorPalavra * 2;
+            jogo.gerenciadorDeEventos.publicar("atingiu-marco-de-pontuacao", this);
         }
     }
 
