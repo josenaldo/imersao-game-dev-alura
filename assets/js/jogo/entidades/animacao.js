@@ -13,7 +13,16 @@ class Animacao {
         this.colunasDoSprite = colunasDoSprite;
         this.linhasDoSprite = linhasDoSprite;
 
+        this.xInicial = x;
+        this.yInicial = y;
+
         this.calculaMatrizSprites();
+    }
+
+    reset() {
+        this.frameAtual = 0;
+        this.x = this.xInicial;
+        this.y = this.yInicial;
     }
 
     calculaMatrizSprites() {
@@ -35,7 +44,7 @@ class Animacao {
         }
     }
 
-    exibe() {
+    draw() {
 
         let xNoSprite = this.matrizSprites[this.frameAtual][0];
         let yNoSprite = this.matrizSprites[this.frameAtual][1];

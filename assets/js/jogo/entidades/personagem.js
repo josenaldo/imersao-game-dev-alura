@@ -18,6 +18,7 @@ class Personagem extends Animacao {
      * @param {number} colunasDoSprite - número de colunas, na folha de sprite.
      *  O padrão é 4.
      * @param {number} linhasDoSprite - número de linhas do personagem no
+     * @param {number} auturadoPulo - Autura máxima do pulo do personagem
      *  sprite.
      *
      * TODO: Melhorar esse construtor para usar uma classe SpriteMap, com
@@ -44,6 +45,11 @@ class Personagem extends Animacao {
 
             this.contadorDePulo = 0;
             this.somDoPulo = somDoPulo;
+    }
+
+    reset() {
+        super.reset();
+        this.contadorDePulo = 0;
     }
 
     pula() {
@@ -85,8 +91,8 @@ class Personagem extends Animacao {
         // rectMode(CORNER);
         ellipseMode(CENTER);
 
-        if(game.isDebug()) {
-
+        if(jogo.configuracoes.debug) {
+            //console.log("Modo debug ativo");
             noFill();
             stroke(255, 204, 0);
             strokeWeight(4);

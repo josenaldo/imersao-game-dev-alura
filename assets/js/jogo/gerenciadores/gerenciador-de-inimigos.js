@@ -1,6 +1,7 @@
-class GeradorDeInimigos{
+class GerenciadorDeInimigos {
 
     constructor() {
+
         this.inimigos = Array();
 
         this.imagemInimigoChifrus = null;
@@ -14,16 +15,18 @@ class GeradorDeInimigos{
 
         this.inimigos = null;
 
+        this.filaDeInimigos = null;
+
     }
 
-    preload(){
+    preload() {
         this.imagemInimigoChifrus = loadImage('assets/images/inimigos/chifrus.png');
         this.imagemInimigoChifrusDark = loadImage('assets/images/inimigos/chifrus-dark.png');
         this.imagemInimigoBatus = loadImage('assets/images/inimigos/batus.png');
     }
 
     setup() {
-        this.inimigos = Array();
+
         this.maximoDeInimigosNaTela = 1;
         this.velocidadeMaxima = 15;
         this.velocidadeMinima = 10;
@@ -31,18 +34,24 @@ class GeradorDeInimigos{
         this.alturaMaxima = 600;
         this.alturaMinima = 100;
 
+        this.delayMinimo = 0;
         this.delayMaximo = 500;
         this.aceleracao = 1.5;
 
-        this.alturaDoChao = game.getAlturaDoChao();
+        this.alturaDoChao = jogo.configuracoes.alturaDoChao;
+
+        this.inimigos = [];
+
+        this.inimigos.push(this.getChifrus(0, 0))
+        this.inimigos.push(this.getChifrusDark(0,0))
+        this.inimigos.push(this.getBatus(0,0,0))
+        this.filaDeInimigos = [];
     }
 
     aumentaDificuldade() {
         this.maximoDeInimigosNaTela++;
         this.delayMaximo = this.delayMaximo + 500;
         this.velocidadeMaxima = this.velocidadeMaxima + this.aceleracao;
-        console.log("Aumentando inimigos na tela para: " + this.maximoDeInimigosNaTela);
-        console.log("Velocidade máxima aumentando para: " + this.velocidadeMaxima);
     }
 
     getChifrus(velocidade, delay) {
@@ -56,7 +65,7 @@ class GeradorDeInimigos{
             329,
             4,
             7,
-            velocidade * game.getVelocidadeBase(),
+            velocidade * jogo.configuracoes.velocidadeBase,
             delay
         );
     }
@@ -72,12 +81,11 @@ class GeradorDeInimigos{
             329,
             4,
             7,
-            velocidade * game.getVelocidadeBase(),
+            velocidade * jogo.configuracoes.velocidadeBase,
             delay);
     }
 
-    getBatus(velocidade, delay) {
-        let altura = Math.random() * (this.alturaMaxima - this.alturaMinima) + this.alturaMinima;
+    getBatus(velocidade, delay, altura) {
 
         return new Inimigo(this.imagemInimigoBatus,
             width,
@@ -88,56 +96,60 @@ class GeradorDeInimigos{
             249,
             3,
             2,
-            velocidade * game.getVelocidadeBase(),
-            delay);
+            velocidade * jogo.configuracoes.velocidadeBase,
+            delay,
+            true);
     }
 
     getInimigoAleatorio() {
+        console.log("Gerando novo inimigo aleatorio");
+
         let numeroInimigo = Math.floor(Math.random() * Math.floor(3));
-        let velocidade = Math.random() * (this.velocidadeMaxima - this.velocidadeMinima) + this.velocidadeMinima;
-        let delay = Math.floor(Math.random() * Math.floor(this.delayMaximo));
-        switch(numeroInimigo){
-            case 0:
-                return this.getChifrus(velocidade, delay);
-            case 1:
-                return this.getChifrusDark(velocidade, delay);
-            case 2:
-                return this.getBatus(velocidade, delay);
-            default:
-                return this.getChifrus(velocidade, delay);
-        }
+
+        let inimigo = this.inimigos[numeroInimigo];
+
+        inimigo.x = width;
+        inimigo.randomizeY(this.alturaMinima, this.alturaMaxima);
+        inimigo.randomizeVelocidade(this.velocidadeMinima, this.velocidadeMaxima);
+        inimigo.randomizeDelay(this.delayMinimo, this.delayMaximo);
+
+        return inimigo;
     }
 
-    exibe(){
+    draw() {
 
         // se inimigos em tela < 2
-        if(this.inimigos.length < this.maximoDeInimigosNaTela) {
+        if (this.filaDeInimigos.length < this.maximoDeInimigosNaTela) {
             let inimigo = this.getInimigoAleatorio();
-            this.inimigos.push(inimigo);
+            this.filaDeInimigos.push(inimigo);
         }
 
         // exibe e move os inimigos
         let inimigoEmJogo;
-        for (let i = 0; i < this.inimigos.length; ++i) {
-            inimigoEmJogo = this.inimigos[i];
-            inimigoEmJogo.exibe();
+        for (let i = 0, n = this.filaDeInimigos.length; i < n; ++i) {
+            inimigoEmJogo = this.filaDeInimigos[i];
+            inimigoEmJogo.draw();
             inimigoEmJogo.move();
         }
 
-        this.inimigos = this.inimigos.filter(function(inimigo, index, arr){ return !inimigo.estaForaDaTela();});
-
+        for (let i = this.filaDeInimigos.length - 1 ; i >= 0 ; i--) {
+            inimigoEmJogo = this.filaDeInimigos[i];
+            if(inimigoEmJogo.estaForaDaTela()) {
+                this.filaDeInimigos.splice(i,1);
+            }
+        }
     }
 
     estaColidindo(personagem) {
-        for (var i = 0; i < this.inimigos.length; ++i) {
+        for (let i = 0, n = this.inimigos.length; i < n; ++i) {
             var inimigo = this.inimigos[i];
-    
+
             // TODO: Fazer o piroto piscar se acontecer uma colisão
             // TODO: Tocar um som de porrada na hora da colisão
             // TODO: Diminuir a vida do Piroto e só dar game over quando a vida chegar ao fim
             // TODO: Tocar musica de game over
             if (personagem.estaColidindo(inimigo)) {
-                game.setStateGameOver();
+                jogo.gerenciadorDeEventos.publicar("colidiu-com-inimigo", this);
                 break;
             }
         }

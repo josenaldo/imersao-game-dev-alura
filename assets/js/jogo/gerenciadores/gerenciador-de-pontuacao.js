@@ -10,11 +10,15 @@
 // TODO: Salvar lista de palavras recuperadas entre cada partida
 // TODO: Eliminar palavras recuperadas da lista de palavras
 // TODO: Mostrar pontuação total do usuário
-class Pontuacao {
+class GerenciadorDePontuacao {
     constructor() {
+
         this.palavra = null;
         this.wordDashes = null;
-        this.setup();
+    }
+
+    preload() {
+        jogo.gerenciadorDeEventos.assinar("colidiu-com-moeda", this, "pegouMoeda");
     }
 
     getNomeAleatorio (){
@@ -41,7 +45,7 @@ class Pontuacao {
     }
 
 
-    exibe(){
+    draw(){
         fill("#a078a5");
         textAlign(RIGHT);
         textStyle(BOLD);
@@ -69,7 +73,6 @@ class Pontuacao {
 
         if(this.getWordDashes() === this.palavra) {
             this.pontos += this.palavra.length * 100;
-            console.log("CONSEGUIU: " + this.palavra);
             this.resetNomeDoCapeta();
         }
 
@@ -79,7 +82,7 @@ class Pontuacao {
         let novoMarco;
 
         if(this.pontos >= this.marcos[0]){
-            game.aumentaDificuldade();
+            //TODO Avisa que chegou em marco
             this.marcos.shift();
             this.creu++;
             novoMarco = this.marcos[this.marcos.length -1] * 2;

@@ -140,4 +140,10 @@ Power ups
 - mais um pulo (1 min)
 - invencibilidade (30 seg)
 - Atrair letras
--
+
+
+Artigos
+
+https://www.alura.com.br/artigos/entenda-diferenca-entre-var-let-e-const-no-javascript
+
+https://2ality.com/2013/06/auto-binding.html
