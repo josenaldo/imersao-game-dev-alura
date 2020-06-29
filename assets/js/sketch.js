@@ -23,6 +23,6 @@ function keyPressed() {
     jogo.keyPressed(key);
 }
 
-function mousePressed() {
-    jogo.mousePressed(mouseX, mouseY);
-}
+// function mousePressed() {
+//     jogo.mousePressed(mouseX, mouseY);
+// }

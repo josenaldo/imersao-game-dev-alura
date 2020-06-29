@@ -4,7 +4,6 @@ class CenaGameOver {
         //console.log("CenaGameOver: construtor");
 
         this.imagemGameOver = null;
-        this.gameOver = false;
         this.somDoGameOver = null;
         this.netx = null;
     }
@@ -26,7 +25,7 @@ class CenaGameOver {
     draw() {
         //console.log("CenaGameOver: draw");
         this.somDoGameOver.loop();
-        image(this.imagemGameOver, 0, 0);
+        image(this.imagemGameOver, 0, 0, width, height);
         noLoop();
     }
 

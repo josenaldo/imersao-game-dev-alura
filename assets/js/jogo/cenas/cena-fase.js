@@ -44,8 +44,6 @@ class CenaFase {
         this.imagemCenarioArvores = loadImage('assets/images/cenario/cenario-arvores.png');
         this.imagemCenarioChao = loadImage('assets/images/cenario/cenario-chao.png');
 
-        this.imagemPause = loadImage('assets/images/telas/tela-pause.png');
-
         this.somDoJogo = loadSound('assets/sounds/running-1.mp3');
         this.somDoPulo = loadSound('assets/sounds/pulo.wav');
 
@@ -58,6 +56,7 @@ class CenaFase {
         this.gerenciadorDeMoedas.preload();
 
         this.gerenciadorDePontuacao = jogo.gerenciadorDePontuacao;
+
     }
 
     setup() {
@@ -81,26 +80,29 @@ class CenaFase {
 
     reset() {
 
-        clear();
+        if (!this.pause) {
+            clear();
 
-        this.cenarioCeu.reset();
-        this.cenarioMontanhas.reset();
-        this.cenarioArvores.reset();
-        this.cenarioChao.reset();
+            this.cenarioCeu.reset();
+            this.cenarioMontanhas.reset();
+            this.cenarioArvores.reset();
+            this.cenarioChao.reset();
 
-        this.personagem.reset();
+            this.personagem.reset();
 
-        this.gerenciadorDeMoedas.setup();
-        this.gerenciadorDeInimigos.setup();
-        this.gerenciadorDePontuacao.setup();
+            this.gerenciadorDeMoedas.setup();
+            this.gerenciadorDeInimigos.setup();
+            this.gerenciadorDePontuacao.setup();
+            this.pause = false;
 
+        }
         this.somDoJogo.loop();
         loop();
+
     }
 
     draw() {
         //console.log("CenaFase: draw")
-
         this.cenarioCeu.move();
         this.cenarioCeu.draw();
         this.cenarioMontanhas.move();
@@ -126,46 +128,40 @@ class CenaFase {
     sceneEnd() {
         //console.log("CenaFase: sceneEnd");
         this.somDoJogo.stop();
+        if (this.pause) {
+            return "cenaPause";
+        }
+
         return "cenaGameOver";
     }
 
     colidiuComInimigo() {
         //console.log("COLIDIU")
+        this.pause = false;
         jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
     }
 
-    togglePause() {
-
-        this.pausado = !this.pausado;
-
-        if (this.pausado) {
-            this.somDoJogo.pause();
-            image(this.imagemPause, 0, 0);
-            noLoop();
-        } else {
-            this.somDoJogo.loop();
-            loop();
-        }
-    }
-
     keyPressed(key) {
+
         //console.log("CenaFase: keyPressed");
         if (key === 'ArrowUp') {
             this.personagem.pula();
         }
         if (key === 'p' || key === 'P') {
-            this.togglePause();
+            this.pause = true;
+            jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
         }
 
     }
 
     mousePressed(mouseX, mouseY) {
-        // if (mouseButton === LEFT) {
+        if (mouseButton === LEFT) {
             this.personagem.pula();
-        // }
-        // if (mouseButton === RIGHT) {
-        //     this.togglePause();
-        // }
+        }
+        if (mouseButton === RIGHT) {
+            this.togglePause();
+        }
 
     }
+
 }

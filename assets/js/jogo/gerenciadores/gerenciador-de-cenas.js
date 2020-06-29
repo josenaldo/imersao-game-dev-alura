@@ -7,6 +7,7 @@ class GerenciadorDeCenas {
         let cenaConfiguracao = new CenaConfiguracao();
         let cenaFase = new CenaFase();
         let cenaGameOver = new CenaGameOver();
+        let cenaPause = new CenaPause();
 
         this.cenas = {
             cenaInicial: cenaInicial,
@@ -14,6 +15,7 @@ class GerenciadorDeCenas {
             cenaConfiguracao: cenaConfiguracao,
             cenaFase: cenaFase,
             cenaGameOver: cenaGameOver,
+            cenaPause: cenaPause,
         }
 
         this.cenaAtual = 'cenaInicial';
@@ -41,6 +43,7 @@ class GerenciadorDeCenas {
 
     sceneEnd() {
         this.cenaAtual = this.cenas[this.cenaAtual].sceneEnd();
+
         this.cenas[this.cenaAtual].reset();
     }
 

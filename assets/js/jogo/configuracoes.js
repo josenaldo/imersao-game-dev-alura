@@ -3,7 +3,7 @@ class Configuracoes {
 
         this.debug = false;
 
-        this.alturaDoChao = 150;
+        this.alturaDoChao = 120;
         this.velocidadeBase = 1;
         this.aceleracao = 0.01;
 
