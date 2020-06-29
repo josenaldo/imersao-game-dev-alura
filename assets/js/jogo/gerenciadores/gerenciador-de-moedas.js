@@ -109,13 +109,15 @@ class GerenciadorDeMoedas {
     }
 
     estaColidindo(personagem) {
+        let estaProximo;
+
         for (let i = 0, n = this.filaDeMoedas.length; i < n; ++i) {
             var moeda = this.filaDeMoedas[i];
 
-            // TODO: Fazer o piroto piscar se acontecer uma colisão
-            // TODO: Tocar um som de porrada na hora da colisão
-            // TODO: Diminuir a vida do Piroto e só dar game over quando a vida chegar ao fim
-            if (personagem.estaColidindo(moeda)) {
+            //TODO: Fazer algum efeito quando o piroto completar uma palavra.
+            estaProximo = moeda.x < (personagem.x + personagem.largura/2 + 20);
+
+            if (estaProximo && personagem.estaColidindo(moeda)) {
                 jogo.gerenciadorDeEventos.publicar("colidiu-com-moeda", this);
                 moeda.pegou();
                 break;

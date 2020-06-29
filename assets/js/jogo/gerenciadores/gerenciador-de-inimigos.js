@@ -169,14 +169,17 @@ class GerenciadorDeInimigos {
     }
 
     estaColidindo(personagem) {
+        let estaProximo;
+
         for (let i = 0, n = this.filaDeInimigos.length; i < n; ++i) {
             var inimigo = this.filaDeInimigos[i];
 
             // TODO: Fazer o piroto piscar se acontecer uma colisão
             // TODO: Tocar um som de porrada na hora da colisão
             // TODO: Diminuir a vida do Piroto e só dar game over quando a vida chegar ao fim
-            // TODO: Tocar musica de game over
-            if (personagem.estaColidindo(inimigo)) {
+            estaProximo = inimigo.x < (personagem.x + personagem.largura/2 + 20);
+
+            if (estaProximo && personagem.estaColidindo(inimigo)) {
                 jogo.gerenciadorDeEventos.publicar("colidiu-com-inimigo", this);
                 break;
             }
