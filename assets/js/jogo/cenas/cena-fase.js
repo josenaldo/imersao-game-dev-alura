@@ -77,19 +77,11 @@ class CenaFase {
         this.gerenciadorDeMoedas.setup();
         this.gerenciadorDeInimigos.setup();
         this.gerenciadorDePontuacao.setup();
-
-        // TODO: Verificar isso
-        // if(this.previousGameState === GameState.STARTED || this.previousGameState === GameState.GAMEOVER){
-
-
-        //     this.somDoJogo.loop();
-        //     clear();
-        //     this.reset();
-        //     loop();
-        // }
     }
 
     reset() {
+
+        clear();
 
         this.cenarioCeu.reset();
         this.cenarioMontanhas.reset();

@@ -11,6 +11,8 @@ class Configuracoes {
 
         this.chancesDeMoedas = 100;
         this.maximoDeMoedasNaTela = 1;
+
+        this.fontePrincipal = 'assets/fonts/monsteramabold.ttf';
     }
 
     toggleDebug() {

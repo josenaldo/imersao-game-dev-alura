@@ -4,14 +4,17 @@ class CenaInicial {
         //console.log("CenaInicial: construtor")
 
         this.imagemGameStart = null;
-        this.cenarioInicio = null;
         this.somDoInicio = null;
+        this.font = null;
     }
 
     preload() {
         //console.log("CenaInicial: preload")
         this.somDoInicio = loadSound('assets/sounds/start-game.mp3');
         this.imagemGameStart = loadImage('assets/images/telas/tela-inicio.png');
+        this.font = loadFont(jogo.configuracoes.fontePrincipal)
+
+
     }
 
     setup() {
@@ -25,7 +28,8 @@ class CenaInicial {
 
     draw() {
         //console.log("CenaInicial: draw");
-        image(this.imagemGameStart, 0, 0);
+        this._exibeImagemDeFundo();
+        this._exibeTexto();
         noLoop();
     }
 
@@ -38,5 +42,23 @@ class CenaInicial {
     keyPressed() {
         //console.log("CenaInicial: keyPressed")
         jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
+    }
+
+    _exibeImagemDeFundo() {
+        image(this.imagemGameStart, 0, 0, width, height);
+    }
+
+    _exibeTexto() {
+        textFont(this.font);
+
+        let c = color('#bfa5c3');
+        fill(c);
+
+        textAlign(CENTER);
+        textSize(250);
+        text("Se pica, Piroto!", width / 2, height / 3);
+
+        textSize(50);
+        text("Aperte qualquer botão para continuar", width / 2, height / 2);
     }
 }

@@ -16,9 +16,12 @@ class GerenciadorDePontuacao {
         this.palavra = null;
         this.wordDashes = null;
         this.pontuacaoPorDistanciaInicial = 0.25;
+        this.font = null;
     }
 
     preload() {
+        this.font = loadFont(jogo.configuracoes.fontePrincipal);
+
         jogo.gerenciadorDeEventos.assinar("colidiu-com-moeda", this, "pegouMoeda");
     }
 
@@ -51,14 +54,24 @@ class GerenciadorDePontuacao {
 
     draw(){
         fill("#a078a5");
-        textAlign(RIGHT);
-        textStyle(BOLD);
-        textFont("Roboto")
-        textSize(50);
+        textFont(this.font);
 
-        text("Pontos: " + parseInt(this.pontos), width-10, 50);
-        text("Créu: " + this.creu, width-10, 100);
-        text(this.getWordDashes(), width-10, 150);
+        textSize(40);
+
+
+        textAlign(LEFT);
+        text("Créu: " + this.creu, 10, 50);
+
+        textAlign(CENTER);
+        text(this.getWordDashes(), width/2, 50);
+
+        textAlign(RIGHT);
+        text("Score: " + parseInt(this.pontos), width-10, 50);
+
+
+
+
+
     }
 
     adicionarPontos(pontuacao){
