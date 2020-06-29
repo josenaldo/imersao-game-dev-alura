@@ -17,6 +17,7 @@ class GerenciadorDePontuacao {
         this.wordDashes = null;
         this.pontuacaoPorDistanciaInicial = 0.25;
         this.font = null;
+        this.nomesCompletados = 0;
     }
 
     preload() {
@@ -38,10 +39,10 @@ class GerenciadorDePontuacao {
         this.resetNomeDoCapeta();
         this.pontos = 0;
         this.creu = 1;
-        this.marcos = [200, 400, 600, 800];
+        this.marcos = [10, 25, 50, 100, 200, 500];
         this.pontuacaoPorPalavra = 100;
         this.pontuacaoPorDistancia = this.pontuacaoPorDistanciaInicial;
-
+        this.nomesCompletados = 0;
     }
 
     resetNomeDoCapeta() {
@@ -58,19 +59,16 @@ class GerenciadorDePontuacao {
 
         textSize(40);
 
-
         textAlign(LEFT);
         text("Créu: " + this.creu, 10, 50);
+        text("Invocados: " + this.nomesCompletados, 10, 100);
+
 
         textAlign(CENTER);
         text(this.getWordDashes(), width/2, 50);
 
         textAlign(RIGHT);
         text("Score: " + parseInt(this.pontos), width-10, 50);
-
-
-
-
 
     }
 
@@ -82,7 +80,7 @@ class GerenciadorDePontuacao {
     // TODO Adicionar powerUp que dá mais pontuacao por distancia
     pontuarPorDistancia(){
         this.pontos = this.pontos + this.pontuacaoPorDistancia;
-        this.verificaMarco();
+
     }
 
     pegouMoeda() {
@@ -91,7 +89,9 @@ class GerenciadorDePontuacao {
 
         if(this.getWordDashes() === this.palavra) {
             this.pontos += this.palavra.length * this.pontuacaoPorPalavra;
+            this.nomesCompletados++;
             this.resetNomeDoCapeta();
+            this.verificaMarco();
         }
 
     }
@@ -99,7 +99,7 @@ class GerenciadorDePontuacao {
     verificaMarco(){
         let novoMarco;
 
-        if(this.pontos >= this.marcos[0]){
+        if(this.nomesCompletados >= this.marcos[0]){
             //TODO Avisa que chegou em marco
             this.marcos.shift();
             this.creu++;
