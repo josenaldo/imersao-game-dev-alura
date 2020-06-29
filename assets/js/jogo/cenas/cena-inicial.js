@@ -1,45 +1,51 @@
 class CenaInicial {
 
     constructor() {
-        //console.log("CenaInicial: construtor")
-
         this.imagemGameStart = null;
         this.somDoInicio = null;
         this.font = null;
+        this.botao = null;
     }
 
     preload() {
-        //console.log("CenaInicial: preload")
         this.somDoInicio = loadSound('assets/sounds/start-game.mp3');
         this.imagemGameStart = loadImage('assets/images/cenas/cena-inicio.png');
         this.font =jogo.configuracoes.font;
     }
 
     setup() {
-        //console.log("CenaInicial: setup")
+        this.botao = createButton("Iniciar");
+        this.botao.mousePressed(() => jogo.gerenciadorDeEventos.publicar("cena-terminada", this));
+        this.botao.addClass('botao-inicial');
     }
 
     reset() {
+        this.botao = createButton("Iniciar");
+        this.botao.mousePressed(() => jogo.gerenciadorDeEventos.publicar("cena-terminada", this));
+        this.botao.addClass('botao-inicial');
+
         this.somDoInicio.loop();
         loop();
     }
 
     draw() {
-        //console.log("CenaInicial: draw");
         this._exibeImagemDeFundo();
         this._exibeTexto();
+        this._exibeBotao();
         noLoop();
     }
 
     sceneEnd() {
         //console.log("CenaInicial: sceneEnd")
+        this.botao.remove();
         this.somDoInicio.stop();
         return "cenaFase";
     }
 
-    keyPressed() {
-        //console.log("CenaInicial: keyPressed")
-        jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
+    keyPressed(key) {
+        if(key === "Enter") {
+            jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
+        }
     }
 
     mousePressed(mouseX, mouseY) {
@@ -64,5 +70,10 @@ class CenaInicial {
         textAlign(CENTER, TOP);
         textSize(50);
         text("Aperte qualquer botão para continuar", width / 2, height / 4);
+    }
+
+    _exibeBotao() {
+        this.botao.style("width","200px");
+        this.botao.position(width - this.botao.width >> 1, 200 + height / 2);
     }
 }

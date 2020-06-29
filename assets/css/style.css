@@ -1,4 +1,12 @@
-
+@font-face {
+    font-family: "MonsteramaBold";
+    src: url("fonts/monsteramabold.woff") format("woff"),
+        /* Modern Browsers */
+        url("fonts/monsteramabold.woff2") format("woff2");
+    /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
 
 html,
 body {
@@ -7,7 +15,8 @@ body {
     background-color: #611F6A;
     color: #fff;
     height: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: "MonsteramaBold";
+
 }
 
 #p5_loading {
@@ -42,6 +51,12 @@ canvas {
     animation: spin 2s linear infinite;
 }
 
+.loadingclass h1{
+    font-family: "MonsteramaBold";
+    font-size: 56px;
+}
+
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -50,4 +65,29 @@ canvas {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.botao-inicial {
+    background-color: #cfbbd2;
+    border-radius: 26px;
+    border: 1px solid #b08fb4;
+    display: inline-block;
+    cursor: pointer;
+    color: #260c2a;
+    font-family: "MonsteramaBold";
+    font-size: 40px;
+    padding: 17px 20px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #906296;
+    max-width: 200px;
+
+}
+
+.botao-inicial:hover {
+    background-color: #bfa5c3;
+}
+
+.botao-inicial:active {
+    position: relative;
+    top: 1px;
 }
