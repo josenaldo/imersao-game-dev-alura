@@ -9,7 +9,7 @@ class Configuracoes {
 
         this.frameRate = 48;
 
-        this.chancesDeMoedas = 100;
+        this.chancesDeMoedas = 20;
         this.maximoDeMoedasNaTela = 8;
 
         this.fontePrincipal = 'assets/fonts/monsteramabold.ttf';

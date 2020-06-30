@@ -30,7 +30,7 @@ class Fase {
     }
 
     reset() {
-        this.musica.loop();
+        // this.musica.loop();
         this.cenarioLayer1.reset();
         this.cenarioLayer2.reset();
         this.cenarioLayer3.reset();
@@ -71,9 +71,7 @@ class Fase {
 
     saindoDeCena(){
         this.musica.setVolume(0, 2);
-        setTimeout(() => {
-            this.pause();
-        }, 2000);
+        this.musica.stop(2);
     }
 
     getMarcos() {

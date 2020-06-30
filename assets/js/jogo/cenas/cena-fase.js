@@ -97,6 +97,7 @@ class CenaFase {
         jogo.gerenciadorDeEventos.assinar("vida-acabou", this, "gameOver");
         jogo.gerenciadorDeEventos.assinar("aumentou-creu", this, "aumentouCreu");
         jogo.gerenciadorDeEventos.assinar("acabou-a-fase", this, "passouDeFase");
+
     }
 
     passouDeFase() {
@@ -125,6 +126,7 @@ class CenaFase {
             clear();
 
             this.fases[this.faseAtual].reset();
+            this.fases[this.faseAtual].entrandoEmCena();
 
             this.personagem.reset();
             this.personagem.tornaInvencivel();
