@@ -46,6 +46,10 @@ class Moeda extends Animacao {
         }
     }
 
+    ePowerup(){
+        return this.tipo === 'moeda-invencibilidade' || this.tipo === "moeda-pulo-triplo"
+    }
+
     libera() {
         this.coletada = false;
     }
@@ -66,7 +70,4 @@ class Moeda extends Animacao {
         }
     }
 
-    aplicaPowerUp(personagem) {
-
-    }
 }

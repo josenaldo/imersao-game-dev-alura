@@ -160,7 +160,7 @@ class GerenciadorDeMoedas {
             estaProximo = moeda.x < (personagem.x + personagem.largura/2 + 20);
 
             if (estaProximo && personagem.estaColidindo(moeda)) {
-                jogo.gerenciadorDeEventos.publicar("colidiu-com-moeda", this);
+                jogo.gerenciadorDeEventos.publicar("colidiu-com-moeda", moeda);
                 moeda.pegou(personagem);
                 break;
             }

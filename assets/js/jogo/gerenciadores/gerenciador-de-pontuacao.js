@@ -20,10 +20,14 @@ class GerenciadorDePontuacao {
         this.nomesCompletados = 0;
         this.listaNomesCompletados = [];
         this.ultimoEncontrado = null;
+        this.exibePuloTriplo = false;
+        this.exibeInvencibilidade = false;
     }
 
     preload() {
         this.font = loadFont(jogo.configuracoes.fontePrincipal);
+        this.imagemMoedaInvencibilidade = loadImage('assets/images/moedas/hud-invencibilidade.png');
+        this.imagemMoedaPuloTriplo = loadImage('assets/images/moedas/hud-pulo-triplo.png');
 
         jogo.gerenciadorDeEventos.assinar("colidiu-com-moeda", this, "pegouMoeda");
 
@@ -45,6 +49,7 @@ class GerenciadorDePontuacao {
         this.pontos = 0;
         this.creu = 1;
         this.ultimoInvocado = "";
+    
     }
 
     novaFase(fase) {
@@ -80,6 +85,26 @@ class GerenciadorDePontuacao {
         textAlign(RIGHT);
         text("Score: " + parseInt(this.pontos), width-10, 50);
 
+        if(this.exibeInvencibilidade){
+            image(
+                this.imagemMoedaInvencibilidade,
+                width - 100,
+                height - 100,
+                60,
+                70
+            );
+        }
+
+        if(this.exibePuloTriplo){
+            image(
+                this.imagemMoedaPuloTriplo,
+                width - 180,
+                height - 100,
+                60,
+                70
+            );
+        }
+
     }
 
     adicionarPontos(pontuacao){
@@ -92,9 +117,23 @@ class GerenciadorDePontuacao {
         this.pontos = this.pontos + this.pontuacaoPorDistancia;
     }
 
-    pegouMoeda() {
+    pegouMoeda(moeda) {
         this.wordDashes[this.contadorDeMoedas] = this.palavra[this.contadorDeMoedas];
         this.contadorDeMoedas++;
+
+        if(moeda.ePowerup()){
+            if(moeda.tipo === "moeda-invencibilidade"){
+                this.exibeInvencibilidade = true;
+                setTimeout(() => {
+                    this.exibeInvencibilidade = false;
+                }, jogo.configuracoes.moedas.tempoDeInvencibilidade);
+            }else if(moeda.tipo === "moeda-pulo-triplo"){
+                this.exibePuloTriplo = true;
+                setTimeout(() => {
+                    this.exibePuloTriplo = false;
+                }, jogo.configuracoes.moedas.tempoDoPuloTriplo);
+            }
+        };
 
         if(this.getWordDashes() === this.palavra) {
             this.pontos += this.palavra.length * this.pontuacaoPorPalavra;

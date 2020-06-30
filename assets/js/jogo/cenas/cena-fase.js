@@ -23,7 +23,7 @@ class CenaFase {
         this.imagemPersonagem = null;
         this.personagem = null;
         this.imagemVida = null;
-        this.vidaPersonagem = null;
+        this.vida = null;
 
         //Inimigos
         this.gerenciadorDeInimigos = null;
@@ -86,7 +86,7 @@ class CenaFase {
             210, 252, 420, 504, 4, 4);
         this.personagem.setSonsDeColisao(this.sonsDeColisao);
 
-        this.vidaPersonagem = new Vida(this.imagemVida, jogo.configuracoes.maximoDeVidas, jogo.configuracoes.vidasIniciais);
+        this.vida = new Vida(this.imagemVida, jogo.configuracoes.maximoDeVidas, jogo.configuracoes.vidasIniciais);
 
         this.gerenciadorDeMoedas.setup();
         this.gerenciadorDeInimigos.setup();
@@ -97,7 +97,12 @@ class CenaFase {
         jogo.gerenciadorDeEventos.assinar("vida-acabou", this, "gameOver");
         jogo.gerenciadorDeEventos.assinar("aumentou-creu", this, "aumentouCreu");
         jogo.gerenciadorDeEventos.assinar("acabou-a-fase", this, "passouDeFase");
+        jogo.gerenciadorDeEventos.assinar("ganhou-vida", this, "ganhouVida");
 
+    }
+
+    ganhouVida() {
+        this.vida.ganhaVida();
     }
 
     passouDeFase() {
@@ -131,7 +136,7 @@ class CenaFase {
 
             this.personagem.reset();
             this.personagem.tornaInvencivel();
-            this.vidaPersonagem.reset();
+            this.vida.reset();
 
             this.gerenciadorDeMoedas.setup();
             this.gerenciadorDeInimigos.setup();
@@ -156,7 +161,7 @@ class CenaFase {
         this.gerenciadorDeMoedas.draw();
 
         this.personagem.draw();
-        this.vidaPersonagem.draw();
+        this.vida.draw();
 
         this.gerenciadorDePontuacao.pontuarPorDistancia();
         this.gerenciadorDePontuacao.draw();
@@ -181,7 +186,7 @@ class CenaFase {
     }
 
     colidiuComInimigo() {
-        this.vidaPersonagem.perdeVida();
+        this.vida.perdeVida();
         this.personagem.foiAtingido();
         //TODO Verificar se isso ainda é necessario
         this.pause = false;
