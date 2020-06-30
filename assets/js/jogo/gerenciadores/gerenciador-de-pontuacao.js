@@ -18,7 +18,9 @@ class GerenciadorDePontuacao {
         this.pontuacaoPorDistanciaInicial = 0.25;
         this.font = null;
         this.nomesCompletados = 0;
+        this.listaNomesCompletados = [];
         this.vida = null;
+        this.ultimoEncontrado = null;
     }
 
     preload() {
@@ -37,21 +39,22 @@ class GerenciadorDePontuacao {
     }
 
     setup() {
-        this.reset();
+        this.resetPalavra();
         this.marcos = [10, 25, 50, 100, 200, 500];
         this.pontuacaoPorPalavra = 100;
         this.pontuacaoPorDistancia = this.pontuacaoPorDistanciaInicial;
         this.nomesCompletados = 0;
+        this.vida = new Vida();
+        this.pontos = 0;
+        this.creu = 1;
+        this.ultimoInvocado = "";
     }
 
-    reset() {
+    resetPalavra() {
         this.palavra = this.getNomeAleatorio();
         this.wordDashes = [];
         this.wordDashes = "_".repeat(this.palavra.length).split("")
         this.contadorDeMoedas = 0;
-        this.vida = new Vida();
-        this.pontos = 0;
-        this.creu = 1;
     }
 
 
@@ -64,6 +67,7 @@ class GerenciadorDePontuacao {
         textAlign(LEFT);
         text("Créu: " + this.creu, 10, 50);
         text("Invocados: " + this.nomesCompletados, 10, 100);
+        text("Último Invocado: " + this.ultimoInvocado, 10, 150);
 
 
         textAlign(CENTER);
@@ -91,7 +95,10 @@ class GerenciadorDePontuacao {
         if(this.getWordDashes() === this.palavra) {
             this.pontos += this.palavra.length * this.pontuacaoPorPalavra;
             this.nomesCompletados++;
-            this.reset();
+            this.ultimoInvocado = this.palavra;
+            this.listaNomesCompletados.push(this.palavra);
+
+            this.resetPalavra();
             this.verificaMarco();
         }
 
