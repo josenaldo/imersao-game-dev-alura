@@ -1,7 +1,6 @@
 class CenaFase {
 
     constructor() {
-        //console.log("CenaFase: construtor");
 
         this.gerenciadorDePontuacao = null;
 
@@ -39,7 +38,6 @@ class CenaFase {
     }
 
     preload() {
-        //console.log("CenaFase: preload");
         let configuracoesDeFases = jogo.configuracoes.configuracoesDeFases;
         this.fases = [];
         let fase;
@@ -123,7 +121,6 @@ class CenaFase {
 
     aumentouCreu() {
         this.gerenciadorDeInimigos.aumentaDificuldade();
-        jogo.configuracoes.velocidadeBase = jogo.configuracoes.velocidadeBase + jogo.configuracoes.aceleracao;
     }
 
     reset() {

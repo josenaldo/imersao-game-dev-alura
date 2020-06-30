@@ -49,7 +49,7 @@ class GerenciadorDePontuacao {
         this.pontos = 0;
         this.creu = 1;
         this.ultimoInvocado = "";
-    
+
     }
 
     novaFase(fase) {
@@ -153,8 +153,13 @@ class GerenciadorDePontuacao {
             //TODO Avisa que chegou em marco
             this.contadorDeMarcos++;
             this.creu++;
-            this.pontuacaoPorPalavra = this.pontuacaoPorPalavra * 2;
-            jogo.gerenciadorDeEventos.publicar("aumentou-creu", this);
+
+            if(this.creu > jogo.configuracoes.creuMaximo){
+                this.creu = jogo.configuracoes.creuMaximo;
+            }else{
+                this.pontuacaoPorPalavra = this.pontuacaoPorPalavra * 2;
+                jogo.gerenciadorDeEventos.publicar("aumentou-creu", this);
+            }
 
             if(this.contadorDeMarcos >= this.marcos.length) {
                 jogo.gerenciadorDeEventos.publicar("acabou-a-fase", this);

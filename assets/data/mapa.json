@@ -9,7 +9,7 @@
             "layer3": "assets/images/cenario/fase1/layer-3.png",
             "layer4": "assets/images/cenario/fase1/layer-4.png",
             "musica": "assets/sounds/running-1.mp3",
-            "marcos": [1],
+            "marcos": [1, 2],
             "intro": "assets/images/cenario/fase1/intro.png"
         },
         {
@@ -21,7 +21,7 @@
             "layer3": "assets/images/cenario/fase2/layer-3.png",
             "layer4": "assets/images/cenario/fase2/layer-4.png",
             "musica": "assets/sounds/running-2.mp3",
-            "marcos": [1],
+            "marcos": [1, 2],
             "intro": "assets/images/cenario/fase2/intro.png"
         },
         {
@@ -33,7 +33,7 @@
             "layer3": "assets/images/cenario/fase3/layer-3.png",
             "layer4": "assets/images/cenario/fase3/layer-4.png",
             "musica": "assets/sounds/running-3.mp3",
-            "marcos": [1],
+            "marcos": [1, 2],
             "intro": "assets/images/cenario/fase3/intro.png"
         }
     ]

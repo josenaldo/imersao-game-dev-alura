@@ -98,7 +98,6 @@ class Personagem extends Animacao {
         ellipseMode(CENTER);
 
         if(jogo.configuracoes.debug) {
-            //console.log("Modo debug ativo");
             noFill();
             stroke(255, 204, 0);
             strokeWeight(4);

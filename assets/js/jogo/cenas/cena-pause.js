@@ -1,20 +1,17 @@
 class CenaPause {
 
     constructor() {
-        //console.log("CenaPause: construtor");
 
         this.imagemPause = null;
         this.netx = null;
     }
 
     preload() {
-        //console.log("CenaPause: preload");
         this.font =jogo.configuracoes.font;
         this.imagemPause = loadImage('assets/images/cenas/pause-overlay.png');
     }
 
     setup() {
-        //console.log("CenaPause: setup");
     }
 
     reset() {
@@ -22,7 +19,6 @@ class CenaPause {
     }
 
     draw() {
-        //console.log("CenaPause: draw");
         this._exibeImagemDeFundo();
         this._exibeTexto();
 
@@ -34,7 +30,6 @@ class CenaPause {
     }
 
     keyPressed(key) {
-        //console.log("CenaPause: keyPressed");
 
         if(key === 'p') {
             this.next = "cenaFase";
@@ -43,7 +38,6 @@ class CenaPause {
     }
 
     mousePressed(mouseX, mouseY) {
-        //console.log("CenaInicial: mousePressed")
         this.next = "cenaFase";
         jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
     }

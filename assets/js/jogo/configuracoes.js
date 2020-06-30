@@ -2,6 +2,8 @@ class Configuracoes {
     constructor() {
 
         this.debug = false;
+        this.colisaoInimigoLigada = true;
+
 
         this.alturaDoChao = 120;
         this.velocidadeBase = 1;
@@ -9,14 +11,14 @@ class Configuracoes {
 
         this.frameRate = 48;
 
-
         this.fontePrincipal = 'assets/fonts/monsteramabold.ttf';
         this.font = null;
 
-        this.colisaoInimigoLigada = true;
         this.maximoDeVidas = 9;
         this.vidasIniciais = 3;
         this.tempoDeInvencibilidade = 3000;
+
+        this.creuMaximo = 5;
 
         this.volumeMusica = 0.2;
         this.volumeEfeitos = 1;

@@ -54,6 +54,7 @@ class GerenciadorDeInimigos {
         this.maximoDeInimigosNaTela++;
         this.delayMaximo = this.delayMaximo + 500;
         this.velocidadeMaxima = this.velocidadeMaxima + this.aceleracao;
+        jogo.configuracoes.velocidadeBase = jogo.configuracoes.velocidadeBase + jogo.configuracoes.aceleracao;
     }
 
     getChifrus(velocidade, delay) {
@@ -104,8 +105,6 @@ class GerenciadorDeInimigos {
     }
 
     getInimigoAleatorio() {
-        console.log("Gerando novo inimigo aleatorio");
-
         let numeroInimigo = Math.floor(Math.random() * Math.floor(this.inimigos.length));
 
         let inimigo = this.inimigos[numeroInimigo];

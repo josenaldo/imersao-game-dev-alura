@@ -1,15 +1,12 @@
 class CenaGameOver {
 
     constructor() {
-        //console.log("CenaGameOver: construtor");
-
         this.imagemGameOver = null;
         this.musica = null;
         this.netx = null;
     }
 
     preload() {
-        //console.log("CenaGameOver: preload");
         this.font =jogo.configuracoes.font;
         this.imagemGameOver = loadImage('assets/images/cenas/pause-overlay.png');
         this.musica = loadSound('assets/sounds/game-over.mp3');
@@ -17,7 +14,6 @@ class CenaGameOver {
     }
 
     setup() {
-        //console.log("CenaGameOver: setup");
     }
 
     reset() {
@@ -25,7 +21,6 @@ class CenaGameOver {
     }
 
     draw() {
-        //console.log("CenaGameOver: draw");
         this.musica.loop();
         this._exibeImagemDeFundo();
         this._exibeTexto();
@@ -34,14 +29,11 @@ class CenaGameOver {
     }
 
     sceneEnd() {
-        //console.log("CenaGameOver: sceneEnd");
         this.musica.stop();
         return this.next;
     }
 
     keyPressed(key) {
-        //console.log("CenaGameOver: keyPressed");
-
         if(key === ' ') {
             this.next = "cenaFase";
             jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
@@ -54,7 +46,6 @@ class CenaGameOver {
     }
 
     mousePressed(mouseX, mouseY) {
-        //console.log("CenaInicial: mousePressed")
         this.next = "cenaInicial";
         jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
     }

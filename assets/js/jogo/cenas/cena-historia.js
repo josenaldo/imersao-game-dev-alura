@@ -62,7 +62,6 @@ class CenaHistoria{
     }
 
     sceneEnd() {
-        //console.log("CenaInicial: sceneEnd")
         this.divHistoriaHolder.remove();
         this.divHistoria.remove();
         this.botaoProxima.remove();

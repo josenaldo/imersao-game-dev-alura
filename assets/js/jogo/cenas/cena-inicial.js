@@ -37,7 +37,6 @@ class CenaInicial {
     }
 
     sceneEnd() {
-        //console.log("CenaInicial: sceneEnd")
         this.botao.remove();
         this.musica.stop();
         return "cenaHistoria";
