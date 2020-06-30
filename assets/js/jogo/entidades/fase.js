@@ -6,6 +6,8 @@ class Fase {
 
     preload() {
         this.primeira = this.configuracoesDaFase['primeira'];
+        this.titulo = this.configuracoesDaFase['titulo'];
+        this.subtitulo = this.configuracoesDaFase['subtitulo'];
         this.imagemLayer1 = loadImage(this.configuracoesDaFase['layer1']);
         this.imagemLayer2 = loadImage(this.configuracoesDaFase['layer2']);
         this.imagemLayer3 = loadImage(this.configuracoesDaFase['layer3']);
@@ -26,7 +28,7 @@ class Fase {
         this.cenarioLayer3 = new Cenario(this.imagemLayer3, 8, this.primeira);
         this.cenarioLayer4 = new Cenario(this.imagemLayer4, 10, this.primeira);
 
-        this.transicao = new Transicao(this.introImage, 10, this.primeira);
+        this.transicao = new Transicao(this.introImage, 10, this.titulo, this.subtitulo, this.primeira);
     }
 
     reset() {
@@ -36,6 +38,7 @@ class Fase {
         this.cenarioLayer3.reset();
         this.cenarioLayer4.reset();
         this.transicao.reset();
+
     }
 
     draw() {

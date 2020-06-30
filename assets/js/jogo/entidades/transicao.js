@@ -1,6 +1,6 @@
 class Transicao {
 
-    constructor(imagem, velocidade, primeira = false) {
+    constructor(imagem, velocidade, titulo, subtitulo,  primeira = false) {
 
         this.imagem = imagem;
         this.velocidade = velocidade;
@@ -8,6 +8,9 @@ class Transicao {
 
         this.velocidadeInicial = velocidade;
         this.yInicial = 0
+
+        this.titulo = titulo;
+        this.subtitulo = subtitulo;
 
         this.x1Inicial = width;
         this.x2Inicial = width * 2;
@@ -31,6 +34,11 @@ class Transicao {
     draw() {
         image(this.imagem, this.x1, this.y, width, height);
         image(this.imagem, this.x2, this.y, width, height);
+        let x = this.x1 > 0 ? this.x1 : (this.x2 > 0 ? 0 : this.x2);
+
+        this.divTransicao.position(x,0);
+        this.divTitulo.position();
+        this.divSubtitulo.position();
     }
 
     reset() {
@@ -46,6 +54,17 @@ class Transicao {
             this.x1 = this.x1Inicial;
             this.x2 = this.x2Inicial;
         }
+
+        this.divTransicao = createDiv();
+        this.divTransicao.addClass('transicao');
+
+        this.divTitulo = createDiv(this.titulo);
+        this.divTitulo.addClass("titulo");
+        this.divSubtitulo = createDiv(this.subtitulo);
+        this.divSubtitulo.addClass("subtitulo");
+
+        this.divTitulo.parent(this.divTransicao);
+        this.divSubtitulo.parent(this.divTransicao);
     }
 
     move() {
