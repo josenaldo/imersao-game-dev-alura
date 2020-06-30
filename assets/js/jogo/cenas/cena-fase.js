@@ -127,7 +127,7 @@ class CenaFase {
         this.gerenciadorDePontuacao.pontuarPorDistancia();
         this.gerenciadorDePontuacao.draw();
 
-        if(jogo.configuracoes.colisaoInimigoLigada) {
+        if(jogo.configuracoes.colisaoInimigoLigada && !this.personagem.estaInvencivel()) {
             this.gerenciadorDeInimigos.estaColidindo(this.personagem);
         }
         this.gerenciadorDeInimigos.draw();
@@ -147,6 +147,7 @@ class CenaFase {
     colidiuComInimigo() {
         //console.log("COLIDIU")
         this.vidaPersonagem.perdeVida();
+        this.personagem.foiAtingido();
         this.pause = false;
     }
 

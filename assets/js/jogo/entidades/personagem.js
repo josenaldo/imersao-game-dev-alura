@@ -45,11 +45,17 @@ class Personagem extends Animacao {
 
             this.contadorDePulo = 0;
             this.somDoPulo = somDoPulo;
+
+            this.invencivel = false;
+            this.contadorDePisca = 0;
     }
 
     reset() {
         super.reset();
         this.contadorDePulo = 0;
+        this.atingido = false;
+        this.invencivel = false;
+        this.contadorDePisca = 0;
     }
 
     pula() {
@@ -128,4 +134,22 @@ class Personagem extends Animacao {
 
         return colidiu;
     }
+
+    foiAtingido() {
+        this.invencivel = true;
+        this.atingido = true;
+        this.ligaPisca();
+
+        setTimeout(() => {
+            this.invencivel = false;
+            this.atingido = false;
+            this.contadorDePisca = 0;
+            this.desligaPisca();
+        }, jogo.configuracoes.tempoDeInvencibilidade);
+    }
+
+    estaInvencivel() {
+        return this.invencivel;
+    }
+
 }

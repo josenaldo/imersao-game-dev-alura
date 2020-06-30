@@ -18,6 +18,7 @@ class Configuracoes {
         this.colisaoInimigoLigada = true;
         this.maximoDeVidas = 9;
         this.vidasIniciais = 3;
+        this.tempoDeInvencibilidade = 3000;
     }
 
     preload() {
