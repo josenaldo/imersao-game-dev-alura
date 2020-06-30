@@ -2,7 +2,7 @@
     "fases": [
         {
             "titulo": "Fase 1",
-            "sutitulo": "Bosque de Javis Cripto",
+            "subtitulo": "Bosque de Javis Cripto",
             "primeira": true,
             "layer1": "assets/images/cenario/fase1/layer-1.png",
             "layer2": "assets/images/cenario/fase1/layer-2.png",
@@ -14,7 +14,7 @@
         },
         {
             "titulo": "Fase 2",
-            "sutitulo": "Floresta Sombria da Grande Python",
+            "subtitulo": "Floresta Sombria da Grande Python",
             "primeira": false,
             "layer1": "assets/images/cenario/fase2/layer-1.png",
             "layer2": "assets/images/cenario/fase2/layer-2.png",
@@ -26,7 +26,7 @@
         },
         {
             "titulo": "Fase 3",
-            "sutitulo": "Deserto dos Rubys",
+            "subtitulo": "Deserto dos Rubys",
             "primeira": false,
             "layer1": "assets/images/cenario/fase3/layer-1.png",
             "layer2": "assets/images/cenario/fase3/layer-2.png",

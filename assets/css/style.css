@@ -108,12 +108,13 @@ canvas {
 }
 
 .transicao .titulo {
-    font-size: 8em;
+    font-size: 12em;
     margin-top: 200px;
 }
 
 .transicao .subtitulo {
-    font-size: 1.5em;
+    margin-top: 20px;
+    font-size: 5em;
 }
 
 @keyframes spin {
