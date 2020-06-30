@@ -9,8 +9,6 @@ class Configuracoes {
 
         this.frameRate = 48;
 
-        this.chancesDeMoedas = 100;
-        this.maximoDeMoedasNaTela = 5;
 
         this.fontePrincipal = 'assets/fonts/monsteramabold.ttf';
         this.font = null;
@@ -22,6 +20,19 @@ class Configuracoes {
 
         this.volumeMusica = 0.2;
         this.volumeEfeitos = 1;
+        this.moedas = {
+            tempoDeInvencibilidade: 5000,
+            tempoDoPuloTriplo: 5000,
+            sorte: 1,
+            tempoParaProxima: 200,
+            chanceTotal: 100,
+            chanceNormal: 80,
+            chancePuloTriplo: 5,
+            chanceInvencibilidade: 10,
+            chanceVida: 5,
+            maximoDeMoedasNaTela: 1,
+
+        }
     }
 
     preload(configMapa) {

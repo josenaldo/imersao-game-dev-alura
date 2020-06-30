@@ -19,7 +19,6 @@ class GerenciadorDePontuacao {
         this.font = null;
         this.nomesCompletados = 0;
         this.listaNomesCompletados = [];
-        this.vida = null;
         this.ultimoEncontrado = null;
     }
 
@@ -27,6 +26,7 @@ class GerenciadorDePontuacao {
         this.font = loadFont(jogo.configuracoes.fontePrincipal);
 
         jogo.gerenciadorDeEventos.assinar("colidiu-com-moeda", this, "pegouMoeda");
+
     }
 
     getNomeAleatorio (){
@@ -42,7 +42,6 @@ class GerenciadorDePontuacao {
         this.resetPalavra();
         this.pontuacaoPorPalavra = 100;
         this.pontuacaoPorDistancia = this.pontuacaoPorDistanciaInicial;
-        this.vida = new Vida();
         this.pontos = 0;
         this.creu = 1;
         this.ultimoInvocado = "";
@@ -106,7 +105,6 @@ class GerenciadorDePontuacao {
             this.resetPalavra();
             this.verificaMarco();
         }
-
     }
 
     verificaMarco(){

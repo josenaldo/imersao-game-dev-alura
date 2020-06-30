@@ -1,12 +1,14 @@
 class Moeda extends Animacao {
     constructor(imagem, somDaMoeda, x, y, largura, altura,
-        larguraSprite, alturaSprite, colunasDoSprite = 14, linhasDoSprite = 1, velocidade = 10, delay = 0) {
+        larguraSprite, alturaSprite, colunasDoSprite = 14, linhasDoSprite = 1, velocidade = 10, delay = 0, tipo = 'normal') {
+
         super(imagem, x, y, largura, altura, larguraSprite, alturaSprite, colunasDoSprite, linhasDoSprite);
 
         this.velocidade = velocidade;
         this.delay = delay;
         this.coletada = false;
         this.somDaMoeda = somDaMoeda;
+        this.tipo = tipo;
     }
 
     randomizeY(minima, maxima) {
@@ -25,9 +27,23 @@ class Moeda extends Animacao {
         this.x = this.x - (this.velocidade * jogo.configuracoes.velocidadeBase);
     }
 
-    pegou() {
+    pegou(personagem) {
         this.coletada = true;
         this.somDaMoeda.play();
+
+        switch(this.tipo){
+            case 'moeda-invencibilidade':
+                personagem.tornaInvencivel(jogo.configuracoes.moedas.tempoDeInvencibilidade);
+                break;
+            case 'moeda-vida':
+                jogo.gerenciadorDeEventos.publicar("ganhou-vida", this);
+                break;
+            case 'moeda-pulo-triplo':
+                personagem.ganhaPuloTriplo(jogo.configuracoes.moedas.tempoDoPuloTriplo)
+                break;
+            case 'normal':
+            default:
+        }
     }
 
     libera() {
@@ -48,6 +64,9 @@ class Moeda extends Animacao {
         } else {
             return;
         }
+    }
+
+    aplicaPowerUp(personagem) {
 
     }
 }

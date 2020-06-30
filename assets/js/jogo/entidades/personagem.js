@@ -156,7 +156,7 @@ class Personagem extends Animacao {
         return this.invencivel;
     }
 
-    tornaInvencivel() {
+    tornaInvencivel(tempo = 3000) {
         this.invencivel = true;
         this.ligaPisca();
 
@@ -164,7 +164,15 @@ class Personagem extends Animacao {
             this.invencivel = false;
             this.contadorDePisca = 0;
             this.desligaPisca();
-        }, jogo.configuracoes.tempoDeInvencibilidade);
+        }, tempo);
+    }
+
+    ganhaPuloTriplo(tempo = 3000) {
+        this.maximoDePulos = 3;
+
+        setTimeout(() => {
+            this.maximoDePulos = 2;
+        }, tempo);
     }
 
     setSonsDeColisao(sonsDeColisao){

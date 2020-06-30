@@ -5,7 +5,10 @@ class GerenciadorDeMoedas {
     }
 
     preload() {
-        this.imagemMoeda = loadImage('assets/images/items/moeda.png');
+        this.imagemMoeda = loadImage('assets/images/moedas/moeda.png');
+        this.imagemMoedaVida = loadImage('assets/images/moedas/moeda-vida.png');
+        this.imagemMoedaInvencibilidade = loadImage('assets/images/moedas/moeda-invencibilidade.png');
+        this.imagemMoedaPuloTriplo = loadImage('assets/images/moedas/moeda-pulo-triplo.png');
         this.somDaMoeda = loadSound('assets/sounds/moeda.mp3');
     }
 
@@ -19,14 +22,48 @@ class GerenciadorDeMoedas {
         this.delayMaximo = 500;
         this.aceleracao = 0;
         this.moedas = [];
-        this.filaDeMoedas = [];
-        this.sorte = 1;
+        this.cronometroDeMoeda = jogo.configuracoes.moedas.tempoParaProxima;
 
-        let moeda;
-        for (let i = 0; i < jogo.configuracoes.maximoDeMoedasNaTela; i++) {
-            moeda = this.getMoeda(0 , 0, 0);
-            moeda = this.resetMoeda(moeda)
-            this.moedas.push(moeda);
+        this.filaDeMoedas = [];
+
+        this.moedaNormal = new Moeda(this.imagemMoeda, this.somDaMoeda,
+            width, 0, 100, 100, 100, 100, 14,1,
+            0,
+            0,'normal'
+        );
+        this.moedaNormal = this.resetMoeda(this.moedaNormal)
+        for(let i = 0; i < jogo.configuracoes.moedas.chanceNormal; i++) {
+            this.moedas.push(this.moedaNormal)
+        }
+
+        this.moedaVida = new Moeda(this.imagemMoedaVida, this.somDaMoeda,
+            width, 0, 100, 100, 100, 100, 14,1,
+            0,
+            0,'moeda-vida'
+        );
+        this.moedaVida = this.resetMoeda(this.moedaVida)
+        for(let i = 0; i < jogo.configuracoes.moedas.chanceVida; i++) {
+            this.moedas.push(this.moedaVida)
+        }
+
+        this.moedaPuloTriplo = new Moeda(this.imagemMoedaPuloTriplo, this.somDaMoeda,
+            width, 0, 100, 100, 100, 100, 14,1,
+            0,
+            0,'moeda-pulo-triplo'
+        );
+        this.moedaPuloTriplo = this.resetMoeda(this.moedaPuloTriplo)
+        for(let i = 0; i < jogo.configuracoes.moedas.chancePuloTriplo; i++) {
+            this.moedas.push(this.moedaPuloTriplo)
+        }
+
+        this.moedaInvencibilidade = new Moeda(this.imagemMoedaInvencibilidade, this.somDaMoeda,
+            width, 0, 100, 100, 100, 100, 14,1,
+            0,
+            0,'moeda-invencibilidade'
+        );
+        this.moedaInvencibilidade = this.resetMoeda(this.moedaInvencibilidade)
+        for(let i = 0; i < jogo.configuracoes.moedas.chanceInvencibilidade; i++) {
+            this.moedas.push(this.moedaInvencibilidade)
         }
 
     }
@@ -57,15 +94,17 @@ class GerenciadorDeMoedas {
     }
 
     getMoedaAleatorio() {
-        console.log("Gerando moeda aleatoria");
 
-        let chances = jogo.configuracoes.chancesDeMoedas / this.sorte;
+
+        let chances = jogo.configuracoes.moedas.chanceTotal / jogo.configuracoes.moedas.sorte;
 
         let sorteio = parseInt(Math.floor(Math.random() * Math.floor(chances)));
 
-        if (sorteio % chances == 0) {
+        let num = sorteio % chances;
 
-            let moeda = this.moedas.pop();
+        if ( num < jogo.configuracoes.moedas.chanceTotal ) {
+
+            let moeda = this.moedas[num];
 
             moeda.x = width;
             moeda.randomizeY(this.alturaMinima, this.alturaMaxima);
@@ -81,8 +120,11 @@ class GerenciadorDeMoedas {
     // TODO: mudar esse metodo exibe para draw
     draw() {
 
+        this.cronometroDeMoeda--;
+
         // se inimigos em tela < 2
-        if (this.filaDeMoedas.length < jogo.configuracoes.maximoDeMoedasNaTela) {
+        if (this.cronometroDeMoeda <= 0 && this.filaDeMoedas.length < jogo.configuracoes.moedas.maximoDeMoedasNaTela) {
+            this.cronometroDeMoeda = jogo.configuracoes.moedas.tempoParaProxima;
             let moeda = this.getMoedaAleatorio();
             if (moeda) {
                 this.filaDeMoedas.push(moeda);
@@ -100,10 +142,10 @@ class GerenciadorDeMoedas {
 
         for (let i = this.filaDeMoedas.length - 1; i >= 0; i--) {
             moedaEmJogo = this.filaDeMoedas[i];
+
             if (moedaEmJogo.estaForaDaTela() || moedaEmJogo.isColetada()) {
                 this.filaDeMoedas.splice(i, 1);
                 moedaEmJogo.libera();
-                this.moedas.push(moedaEmJogo);
             }
         }
     }
@@ -119,7 +161,7 @@ class GerenciadorDeMoedas {
 
             if (estaProximo && personagem.estaColidindo(moeda)) {
                 jogo.gerenciadorDeEventos.publicar("colidiu-com-moeda", this);
-                moeda.pegou();
+                moeda.pegou(personagem);
                 break;
             }
         }
