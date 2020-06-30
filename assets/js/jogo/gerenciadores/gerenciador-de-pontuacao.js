@@ -71,7 +71,7 @@ class GerenciadorDePontuacao {
 
         textAlign(LEFT);
         text("Créu: " + this.creu, 10, 50);
-        text("Invocados: " + this.nomesCompletados, 10, 100);
+        text("Invocados: " + this.listaNomesCompletados.length, 10, 100);
         text("Último Invocado: " + this.ultimoInvocado, 10, 150);
 
 
@@ -117,10 +117,9 @@ class GerenciadorDePontuacao {
             this.contadorDeMarcos++;
             this.creu++;
             this.pontuacaoPorPalavra = this.pontuacaoPorPalavra * 2;
+            jogo.gerenciadorDeEventos.publicar("aumentou-creu", this);
 
-            if(this.contadorDeMarcos < this.marcos.length) {
-                jogo.gerenciadorDeEventos.publicar("aumentou-creu", this);
-            }else {
+            if(this.contadorDeMarcos >= this.marcos.length) {
                 jogo.gerenciadorDeEventos.publicar("acabou-a-fase", this);
             }
         }

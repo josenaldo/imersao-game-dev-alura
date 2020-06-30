@@ -11,7 +11,7 @@ class CenaInicial {
         this.musica = loadSound('assets/sounds/start-game.mp3');
         // this.musica.setVolume(jogo.configuracoes.volumeMusica);
         this.imagemFundo = loadImage('assets/images/cenas/cena-inicio.jpg');
-        this.font =jogo.configuracoes.font;
+        this.font = jogo.configuracoes.font;
     }
 
     setup() {
@@ -25,8 +25,7 @@ class CenaInicial {
         this.botao = createButton("Iniciar");
         this.botao.mousePressed(() => jogo.gerenciadorDeEventos.publicar("cena-terminada", this));
         this.botao.addClass('botao-inicial');
-
-
+        this.musica.loop();
         loop();
     }
 
@@ -45,13 +44,13 @@ class CenaInicial {
     }
 
     keyPressed(key) {
-        if(key === "Enter") {
+        if (key === "Enter") {
             jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
         }
     }
 
     mousePressed(mouseX, mouseY) {
-      
+
     }
 
     _exibeImagemDeFundo() {
@@ -74,7 +73,7 @@ class CenaInicial {
     }
 
     _exibeBotao() {
-        this.botao.position(width/2  + 150, height / 7 * 5);
+        this.botao.position(width / 2 + 150, height / 7 * 5);
         this.botao.center("horizontal");
     }
 }

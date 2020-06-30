@@ -81,4 +81,7 @@ class Transicao {
         return this.transicaoAcabou;
     }
 
+    setPrimeira() {
+        this.primeira = true;
+    }
 }

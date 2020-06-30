@@ -38,14 +38,4 @@ class Jogo {
         this.gerenciadorDeCenas.mousePressed(mouseX, mouseY);
     }
 
-    pegouMoeda() {
-        this.pontuacao.pegouMoeda();
-    }
-
-    aumentaDificuldade() {
-        //console.log("Aumentou a dificuldade: " + this.pontuacao.getPontos())
-        this.geradorDeInimigos.aumentaDificuldade();
-        this.velocidadeBase = this.velocidadeBase + this.aceleracao;
-    }
-
 }

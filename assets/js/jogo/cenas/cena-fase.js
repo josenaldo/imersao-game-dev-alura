@@ -117,7 +117,8 @@ class CenaFase {
     }
 
     aumentouCreu() {
-        console.log("Aumentou creu!");
+        this.gerenciadorDeInimigos.aumentaDificuldade();
+        jogo.configuracoes.velocidadeBase = jogo.configuracoes.velocidadeBase + jogo.configuracoes.aceleracao;
     }
 
     reset() {
@@ -168,8 +169,11 @@ class CenaFase {
     }
 
     sceneEnd() {
+
+        this.fases[this.faseAtual].pause();
+        this.fases[this.faseAtual].setPrimeira();
+
         if (this.pause) {
-            this.fases[this.faseAtual].pause();
             return "cenaPause";
         }
 

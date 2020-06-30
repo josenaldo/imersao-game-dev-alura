@@ -81,4 +81,12 @@ class Fase {
         return this.marcos;
     }
 
+    setPrimeira() {
+        this.cenarioLayer1.setPrimeira();
+        this.cenarioLayer2.setPrimeira();
+        this.cenarioLayer3.setPrimeira();
+        this.cenarioLayer4.setPrimeira();
+        this.transicao.setPrimeira();
+    }
+
 }

@@ -77,4 +77,8 @@ class Cenario {
     acabou() {
         return this.cenarioAcabou;
     }
+
+    setPrimeira() {
+        this.primeira = true;
+    }
 }
