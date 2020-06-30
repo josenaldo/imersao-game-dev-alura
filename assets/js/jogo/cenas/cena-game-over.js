@@ -8,7 +8,7 @@ class CenaGameOver {
 
     preload() {
         this.font =jogo.configuracoes.font;
-        this.imagemGameOver = loadImage('assets/images/cenas/pause-overlay.png');
+        this.imagemGameOver = loadImage('assets/images/cenas/pause-overlay-min.png');
         this.musica = loadSound('assets/sounds/game-over.mp3');
         this.musica.setVolume(jogo.configuracoes.volumeMusica);
     }

@@ -8,7 +8,7 @@ class CenaPause {
 
     preload() {
         this.font =jogo.configuracoes.font;
-        this.imagemPause = loadImage('assets/images/cenas/pause-overlay.png');
+        this.imagemPause = loadImage('assets/images/cenas/pause-overlay-min.png');
     }
 
     setup() {

@@ -4,37 +4,37 @@
             "titulo": "Fase 1",
             "subtitulo": "Bosque de Javis Cripto",
             "primeira": true,
-            "layer1": "assets/images/cenario/fase1/layer-1.png",
-            "layer2": "assets/images/cenario/fase1/layer-2.png",
-            "layer3": "assets/images/cenario/fase1/layer-3.png",
-            "layer4": "assets/images/cenario/fase1/layer-4.png",
+            "layer1": "assets/images/cenario/fase1/layer-1-min.png",
+            "layer2": "assets/images/cenario/fase1/layer-2-min.png",
+            "layer3": "assets/images/cenario/fase1/layer-3-min.png",
+            "layer4": "assets/images/cenario/fase1/layer-4-min.png",
             "musica": "assets/sounds/running-1.mp3",
             "marcos": [1, 2],
-            "intro": "assets/images/cenario/fase1/intro.png"
+            "intro": "assets/images/cenario/fase1/intro-min.png"
         },
         {
             "titulo": "Fase 2",
             "subtitulo": "Floresta Sombria da Grande Python",
             "primeira": false,
-            "layer1": "assets/images/cenario/fase2/layer-1.png",
-            "layer2": "assets/images/cenario/fase2/layer-2.png",
-            "layer3": "assets/images/cenario/fase2/layer-3.png",
-            "layer4": "assets/images/cenario/fase2/layer-4.png",
+            "layer1": "assets/images/cenario/fase2/layer-1-min.png",
+            "layer2": "assets/images/cenario/fase2/layer-2-min.png",
+            "layer3": "assets/images/cenario/fase2/layer-3-min.png",
+            "layer4": "assets/images/cenario/fase2/layer-4-min.png",
             "musica": "assets/sounds/running-2.mp3",
             "marcos": [1, 2],
-            "intro": "assets/images/cenario/fase2/intro.png"
+            "intro": "assets/images/cenario/fase2/intro-min.png"
         },
         {
             "titulo": "Fase 3",
             "subtitulo": "Deserto dos Rubys",
             "primeira": false,
-            "layer1": "assets/images/cenario/fase3/layer-1.png",
-            "layer2": "assets/images/cenario/fase3/layer-2.png",
-            "layer3": "assets/images/cenario/fase3/layer-3.png",
-            "layer4": "assets/images/cenario/fase3/layer-4.png",
+            "layer1": "assets/images/cenario/fase3/layer-1-min.png",
+            "layer2": "assets/images/cenario/fase3/layer-2-min.png",
+            "layer3": "assets/images/cenario/fase3/layer-3-min.png",
+            "layer4": "assets/images/cenario/fase3/layer-4-min.png",
             "musica": "assets/sounds/running-3.mp3",
             "marcos": [1, 2],
-            "intro": "assets/images/cenario/fase3/intro.png"
+            "intro": "assets/images/cenario/fase3/intro-min.png"
         }
     ]
 }
