@@ -1,15 +1,15 @@
 class CenaInicial {
 
     constructor() {
-        this.imagemGameStart = null;
-        this.somDoInicio = null;
+        this.imagemFundo = null;
+        this.musica = null;
         this.font = null;
         this.botao = null;
     }
 
     preload() {
-        this.somDoInicio = loadSound('assets/sounds/start-game.mp3');
-        this.imagemGameStart = loadImage('assets/images/cenas/cena-inicio.png');
+        this.musica = loadSound('assets/sounds/start-game.mp3');
+        this.imagemFundo = loadImage('assets/images/cenas/cena-inicio.jpg');
         this.font =jogo.configuracoes.font;
     }
 
@@ -24,7 +24,7 @@ class CenaInicial {
         this.botao.mousePressed(() => jogo.gerenciadorDeEventos.publicar("cena-terminada", this));
         this.botao.addClass('botao-inicial');
 
-        this.somDoInicio.loop();
+        this.musica.loop();
         loop();
     }
 
@@ -38,8 +38,8 @@ class CenaInicial {
     sceneEnd() {
         //console.log("CenaInicial: sceneEnd")
         this.botao.remove();
-        this.somDoInicio.stop();
-        return "cenaFase";
+        this.musica.stop();
+        return "cenaHistoria";
     }
 
     keyPressed(key) {
@@ -54,7 +54,7 @@ class CenaInicial {
     }
 
     _exibeImagemDeFundo() {
-        image(this.imagemGameStart, 0, 0, width, height);
+        image(this.imagemFundo, 0, 0, width, height);
     }
 
     _exibeTexto() {
@@ -64,16 +64,16 @@ class CenaInicial {
         fill(c);
 
         textAlign(CENTER, CENTER);
-        textSize(250);
-        text("Se pica, Piroto!", width / 2, height / 2);
+        textSize(height / 5);
+        text("Se pica, Piroto!", width / 2, height / 7 * 2);
 
         textAlign(CENTER, TOP);
-        textSize(50);
-        text("Aperte qualquer botão para continuar", width / 2, height / 4);
+        textSize(height / 10);
+        text("Aperte qualquer botão para continuar", width / 2, height / 7 * 4);
     }
 
     _exibeBotao() {
-        this.botao.style("width","200px");
-        this.botao.position(width - this.botao.width >> 1, 200 + height / 2);
+        this.botao.position(width/2  + 150, height / 7 * 5);
+        this.botao.center("horizontal");
     }
 }

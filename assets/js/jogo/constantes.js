@@ -698,3 +698,17 @@ const NOMES_DO_CAPETA = [
     "O Sabonete de Chorume",
     "O Bussolini"
 ]
+
+const HISTORIA = [
+
+    "Desde antes do tempo, existe uma guerra entre os daemons e os angelus. Nessa guerra, não importa quem vai ganhar ou quem vai perder, nem quem ganhar nem perder, vai ganhar ou perder. Vai todo mundo perder.",
+    "Com o alvorecer da humanidade, os angelus descobriram uma importante fonte de poder: a alma humana. Após a morte, a alma humana atinge a maturidade necessária para gerar o máximo de poder a um angelus. E quando mais esse humano adora os angelus, mais saborosa é essa alma.",
+    "Sim, nós somos comida para os angelus...",
+    "Os daemons, ameaçados por essa nova fonte de poder, tentaram se contrapor aos angelus e ajudar a humanidade. Mas os angelus foram astutos. Usando de mentiras e propaganda, influenciaram a humanidade, transformando os daemons em figuras mitológicas inspiradoras de pavor.",
+    "Nós passamos a chamá-los de demônios. E nomes são poder.",
+    "Quando você nomeia uma coisa, você adquire poder e compreensão sobre ela. Por saber disso, os angelus espalharam, entre os humanos, os Nomes do Capeta, o maior tesouro do Rei dos Daemons. Com seus nomes espalhados, os humanos gastam o poder dos Daemon a seu bel prazer.",
+    "Com seu exército derrotado, seus monarca enfraquecido e seus generais desaparecidos, o povo daemon vê-se diante do abismo da extinção.",
+    "Mas um jovem daemon, um dos últimos soldados, resolveu que não vai desistir sem correr. Ele sabe que não tem outra opção. Ele sabe que não há nada pra ele na desistência. Ele sabe que precisa recuperar os Nomes do Capeta.",
+    "Corra, Piroto. Corra para salvar a sua raça!",
+    "Se Pica, Piroto!",
+]

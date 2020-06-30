@@ -3,8 +3,12 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <meta charset="utf-8">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
 </head>
 
 <body>
@@ -19,36 +23,44 @@
         </div>
     </div>
 
-    <script src="assets/js/p5.js"></script>
-    <script src="assets/js/p5.sound.min.js"></script>
+    <!-- P5 -->
+    <!-- <script src="assets/js/p5.js"></script> -->
+    <!-- <script src="assets/js/p5.sound.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/bmoren/p5.collide2D/p5.collide2d.min.js"></script>
 
+    <!-- Base -->
     <script src="assets/js/jogo/constantes.js"></script>
     <script src="assets/js/jogo/configuracoes.js"></script>
 
+    <!-- Entidades -->
     <script src="assets/js/jogo/entidades/animacao.js"></script>
     <script src="assets/js/jogo/entidades/personagem.js"></script>
     <script src="assets/js/jogo/entidades/inimigo.js"></script>
     <script src="assets/js/jogo/entidades/moeda.js"></script>
     <script src="assets/js/jogo/entidades/cenario.js"></script>
 
+    <!-- Cenas -->
+    <script src="assets/js/jogo/cenas/cena-inicial.js"></script>
+    <script src="assets/js/jogo/cenas/cena-historia.js"></script>
     <script src="assets/js/jogo/cenas/cena-configuracao.js"></script>
     <script src="assets/js/jogo/cenas/cena-fase.js"></script>
     <script src="assets/js/jogo/cenas/cena-game-over.js"></script>
-    <script src="assets/js/jogo/cenas/cena-historia.js"></script>
-    <script src="assets/js/jogo/cenas/cena-inicial.js"></script>
     <script src="assets/js/jogo/cenas/cena-pause.js"></script>
 
+    <!-- Gerenciadores -->
     <script src="assets/js/jogo/gerenciadores/gerenciador-de-eventos.js"></script>
     <script src="assets/js/jogo/gerenciadores/gerenciador-de-inimigos.js"></script>
     <script src="assets/js/jogo/gerenciadores/gerenciador-de-moedas.js"></script>
     <script src="assets/js/jogo/gerenciadores/gerenciador-de-pontuacao.js"></script>
     <script src="assets/js/jogo/gerenciadores/gerenciador-de-cenas.js"></script>
 
+    <!-- Jogo -->
     <script src="assets/js/jogo/jogo.js"></script>
 
+    <!-- Sketch -->
     <script src="assets/js/sketch.js"></script>
 
 </body>
-
 </html>

@@ -116,6 +116,7 @@ Base color: #611F6A
 ## Músicas
 
 - Abertura - [Mega Man 2 "Dr. Wily's Wedding" by Jayson Litrio (http://ocremix.org)](https://ocremix.org/remix/OCR01025)
+- História - [Song: Mega Man 2 "Wily and the Deep Forest" by Diggi Dis](https://ocremix.org/remix/OCR01477)
 - Game Over - [Song: Mega Man 2 "Chillout" by sedure (http://ocremix.org)](https://ocremix.org/remix/OCR01175)
 - Running 1 - [Mega Man 2 "Wily's Inferno" by Nutritious, WillRock](https://ocremix.org/remix/OCR02926)
 - Running 2 - [Song: Mega Man 2 "Leaf Storm" by AeroZ](https://ocremix.org/remix/OCR02224)

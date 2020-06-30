@@ -26,3 +26,8 @@ function keyPressed() {
 function mousePressed() {
     jogo.mousePressed(mouseX, mouseY);
 }
+
+// TODO: Ajustar todos os draw para levar em consideração as dimensões atuais do cnvas
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
