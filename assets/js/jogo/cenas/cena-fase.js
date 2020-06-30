@@ -47,7 +47,18 @@ class CenaFase {
         this.imagemCenarioChao = loadImage('assets/images/cenario/cenario-chao.png');
 
         this.somDoJogo = loadSound('assets/sounds/running-1.mp3');
+        this.somDoJogo.setVolume(jogo.configuracoes.volumeMusica);
+
         this.somDoPulo = loadSound('assets/sounds/pulo.wav');
+        this.sonsDeColisao =[
+            loadSound('assets/sounds/piroto/porrada1.mp3'),
+            loadSound('assets/sounds/piroto/porrada2.mp3'),
+            loadSound('assets/sounds/piroto/porrada3.mp3'),
+            loadSound('assets/sounds/piroto/porrada4.mp3'),
+            loadSound('assets/sounds/piroto/porrada5.mp3'),
+            loadSound('assets/sounds/piroto/porrada6.mp3'),
+            loadSound('assets/sounds/piroto/porrada7.mp3'),
+        ];
 
         this.imagemPersonagem = loadImage('assets/images/personagem/piroto.png');
         this.imagemVida = loadImage('assets/images/personagem/vida.png');
@@ -73,6 +84,8 @@ class CenaFase {
             this.imagemPersonagem, this.somDoPulo, 50,
             jogo.configuracoes.alturaDoChao,
             210, 252, 420, 504, 4, 4);
+        this.personagem.setSonsDeColisao(this.sonsDeColisao);
+
         this.vidaPersonagem = new Vida(this.imagemVida, jogo.configuracoes.maximoDeVidas, jogo.configuracoes.vidasIniciais);
 
         jogo.gerenciadorDeEventos.assinar("colidiu-com-inimigo", this, "colidiuComInimigo");

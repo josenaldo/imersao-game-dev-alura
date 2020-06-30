@@ -9,6 +9,7 @@ class CenaInicial {
 
     preload() {
         this.musica = loadSound('assets/sounds/start-game.mp3');
+        this.musica.setVolume(jogo.configuracoes.volumeMusica);
         this.imagemFundo = loadImage('assets/images/cenas/cena-inicio.jpg');
         this.font =jogo.configuracoes.font;
     }

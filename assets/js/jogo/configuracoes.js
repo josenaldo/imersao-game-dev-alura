@@ -19,6 +19,9 @@ class Configuracoes {
         this.maximoDeVidas = 9;
         this.vidasIniciais = 3;
         this.tempoDeInvencibilidade = 3000;
+
+        this.volumeMusica = 0.2;
+        this.volumeEfeitos = 1;
     }
 
     preload() {

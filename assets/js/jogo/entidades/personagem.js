@@ -140,6 +140,10 @@ class Personagem extends Animacao {
         this.atingido = true;
         this.ligaPisca();
 
+        let n = Math.floor(Math.random() * Math.floor(this.sonsDeColisao.length));
+
+        this.sonsDeColisao[n].play();
+
         setTimeout(() => {
             this.invencivel = false;
             this.atingido = false;
@@ -150,6 +154,10 @@ class Personagem extends Animacao {
 
     estaInvencivel() {
         return this.invencivel;
+    }
+
+    setSonsDeColisao(sonsDeColisao){
+        this.sonsDeColisao = sonsDeColisao;
     }
 
 }

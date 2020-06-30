@@ -14,6 +14,7 @@ class CenaHistoria{
 
     preload() {
         this.musica = loadSound('assets/sounds/historia.mp3');
+        this.musica.setVolume(jogo.configuracoes.volumeMusica);
         this.imagemFundo = loadImage('assets/images/cenas/cena-historia.jpg');
         this.font =jogo.configuracoes.font;
         this.historia = HISTORIA;
