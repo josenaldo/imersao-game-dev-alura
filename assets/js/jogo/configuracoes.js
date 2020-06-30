@@ -10,7 +10,7 @@ class Configuracoes {
         this.frameRate = 48;
 
         this.chancesDeMoedas = 100;
-        this.maximoDeMoedasNaTela = 1;
+        this.maximoDeMoedasNaTela = 8;
 
         this.fontePrincipal = 'assets/fonts/monsteramabold.ttf';
         this.font = null;
@@ -24,10 +24,15 @@ class Configuracoes {
         this.volumeEfeitos = 1;
     }
 
-    preload() {
+    preload(configMapa) {
         this.font = loadFont(this.fontePrincipal);
+        this.configuracoesDeFases = configMapa.fases;
+    }
+
+    setup() {
 
     }
+
     toggleDebug() {
         this.debug = !this.debug;
     }

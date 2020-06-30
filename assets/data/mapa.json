@@ -1,0 +1,37 @@
+{
+    "fases": [
+        {
+            "titulo": "Fase 1",
+            "primeira": true,
+            "layer1": "assets/images/cenario/fase1/layer-1.png",
+            "layer2": "assets/images/cenario/fase1/layer-2.png",
+            "layer3": "assets/images/cenario/fase1/layer-3.png",
+            "layer4": "assets/images/cenario/fase1/layer-4.png",
+            "musica": "assets/sounds/running-1.mp3",
+            "marcos": [1],
+            "intro": "assets/images/cenario/fase1/intro.png"
+        },
+        {
+            "titulo": "Fase 2",
+            "primeira": false,
+            "layer1": "assets/images/cenario/fase2/layer-1.png",
+            "layer2": "assets/images/cenario/fase2/layer-2.png",
+            "layer3": "assets/images/cenario/fase2/layer-3.png",
+            "layer4": "assets/images/cenario/fase2/layer-4.png",
+            "musica": "assets/sounds/running-2.mp3",
+            "marcos": [1],
+            "intro": "assets/images/cenario/fase2/intro.png"
+        },
+        {
+            "titulo": "Fase 3",
+            "primeira": false,
+            "layer1": "assets/images/cenario/fase3/layer-1.png",
+            "layer2": "assets/images/cenario/fase3/layer-2.png",
+            "layer3": "assets/images/cenario/fase3/layer-3.png",
+            "layer4": "assets/images/cenario/fase3/layer-4.png",
+            "musica": "assets/sounds/running-3.mp3",
+            "marcos": [1],
+            "intro": "assets/images/cenario/fase3/intro.png"
+        }
+    ]
+}

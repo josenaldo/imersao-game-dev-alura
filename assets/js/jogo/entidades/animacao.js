@@ -60,8 +60,8 @@ class Animacao {
 
         if (this.pisca) {
             if (this.contatorPisca % 10 >= 0 && this.contatorPisca % 10 <= 5) {
-                
-                image(
+
+                image( 
                     this.imagem,
                     this.x,
                     this.y,

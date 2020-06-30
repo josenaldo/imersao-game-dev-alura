@@ -40,14 +40,19 @@ class GerenciadorDePontuacao {
 
     setup() {
         this.resetPalavra();
-        this.marcos = [10, 25, 50, 100, 200, 500];
         this.pontuacaoPorPalavra = 100;
         this.pontuacaoPorDistancia = this.pontuacaoPorDistanciaInicial;
-        this.nomesCompletados = 0;
         this.vida = new Vida();
         this.pontos = 0;
         this.creu = 1;
         this.ultimoInvocado = "";
+    }
+
+    novaFase(fase) {
+
+        this.marcos = fase.getMarcos();
+        this.contadorDeMarcos = 0;
+        this.nomesCompletados = 0;
     }
 
     resetPalavra() {
@@ -107,13 +112,17 @@ class GerenciadorDePontuacao {
     verificaMarco(){
         let novoMarco;
 
-        if(this.nomesCompletados >= this.marcos[0]){
+        if(this.nomesCompletados >= this.marcos[this.contadorDeMarcos]){
             //TODO Avisa que chegou em marco
-            this.marcos.shift();
+            this.contadorDeMarcos++;
             this.creu++;
-            novoMarco = this.marcos[this.marcos.length -1] * 2;
             this.pontuacaoPorPalavra = this.pontuacaoPorPalavra * 2;
-            jogo.gerenciadorDeEventos.publicar("atingiu-marco-de-pontuacao", this);
+
+            if(this.contadorDeMarcos < this.marcos.length) {
+                jogo.gerenciadorDeEventos.publicar("aumentou-creu", this);
+            }else {
+                jogo.gerenciadorDeEventos.publicar("acabou-a-fase", this);
+            }
         }
     }
 

@@ -3,14 +3,21 @@ function preload() {
     p5.disableFriendlyErrors = true;
 
     jogo = new Jogo();
-    jogo.preload();
+
+    loadJSON('assets/data/mapa.json', preloadJogo);
+
     frameRate(jogo.configuracoes.frameRate);
 }
 
 /** Configura o jogo */
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
     jogo.setup();
+}
+
+function preloadJogo(configMapa) {
+    jogo.preload(configMapa);
 }
 
 /** Desenha, a cada loop, o jogo */

@@ -156,6 +156,17 @@ class Personagem extends Animacao {
         return this.invencivel;
     }
 
+    tornaInvencivel() {
+        this.invencivel = true;
+        this.ligaPisca();
+
+        setTimeout(() => {
+            this.invencivel = false;
+            this.contadorDePisca = 0;
+            this.desligaPisca();
+        }, jogo.configuracoes.tempoDeInvencibilidade);
+    }
+
     setSonsDeColisao(sonsDeColisao){
         this.sonsDeColisao = sonsDeColisao;
     }

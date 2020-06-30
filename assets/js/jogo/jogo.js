@@ -7,13 +7,14 @@ class Jogo {
         this.configuracoes = new Configuracoes();
     }
 
-    preload() {
-        this.configuracoes.preload();
+    preload(configMapa) {
+        this.configuracoes.preload(configMapa);
         this.gerenciadorDeCenas.preload();
         this.gerenciadorDePontuacao.preload();
     }
 
     setup() {
+        this.configuracoes.setup();
         this.gerenciadorDeCenas.setup();
     }
 

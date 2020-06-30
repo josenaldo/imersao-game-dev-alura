@@ -1,4 +1,4 @@
-class Cenario {
+class Transicao {
 
     constructor(imagem, velocidade, primeira = false) {
 
@@ -14,7 +14,6 @@ class Cenario {
 
         this.x1InicialPrimeira = 0;
         this.x2InicialPrimeira = width;
-
         this.primeira = primeira;
 
         if (primeira) {
@@ -25,8 +24,8 @@ class Cenario {
             this.x2 = width * 2;
         }
 
-        this.acabouCenario = false;
-        this.emTransicao = false;
+        this.transicaoAcabou = false;
+
     }
 
     draw() {
@@ -35,10 +34,10 @@ class Cenario {
     }
 
     reset() {
-        this.emTransicao = false;
-        this.cenarioAcabou =false;
         this.velocidade = this.velocidadeInicial;
         this.y = this.yInicial;
+        this.transicaoAcabou = false;
+
         if(this.primeira){
             this.x1 = this.x1InicialPrimeira;
             this.x2 = this.x2InicialPrimeira;
@@ -54,27 +53,13 @@ class Cenario {
         this.x2 = this.x2 - (this.velocidade * jogo.configuracoes.velocidadeBase);
 
         // TODO Verificar se isso aqui é uma POG. O simples fato de eu não ter essa certeza é um forte indício de que é POG.
-
-
-        if (this.x1 <= -width) {
-            this.x1 = width - this.velocidade * jogo.configuracoes.velocidadeBase;
-        }
-
         if (this.x2 <= -width) {
-            this.x2 = width - this.velocidade * jogo.configuracoes.velocidadeBase;
+            this.transicaoAcabou = true;
         }
-
-    }
-
-    iniciarTransicao() {
-        this.emTransicao = true;
-    }
-
-    getUltimoX() {
-        return this.x1 > this.x2 ? x1 : x2;
     }
 
     acabou() {
-        return this.cenarioAcabou;
+        return this.transicaoAcabou;
     }
+
 }

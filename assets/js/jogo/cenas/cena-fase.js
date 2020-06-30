@@ -30,24 +30,24 @@ class CenaFase {
         this.gerenciadorDeMoedas = null;
 
         //Sons
-        this.somDoJogo = null;
-
         // TODO colocar o som do pulo no personagem
         this.somDoPulo = null;
-
         this.pausado = false;
+
+        this.faseAtual = 0;
+        this.faseAnterior = 0;
     }
 
     preload() {
         //console.log("CenaFase: preload");
-
-        this.imagemCenarioCeu = loadImage('assets/images/cenario/cenario-ceu.png');
-        this.imagemCenarioMontanhas = loadImage('assets/images/cenario/cenario-montanhas.png');
-        this.imagemCenarioArvores = loadImage('assets/images/cenario/cenario-arvores.png');
-        this.imagemCenarioChao = loadImage('assets/images/cenario/cenario-chao.png');
-
-        this.somDoJogo = loadSound('assets/sounds/running-1.mp3');
-        this.somDoJogo.setVolume(jogo.configuracoes.volumeMusica);
+        let configuracoesDeFases = jogo.configuracoes.configuracoesDeFases;
+        this.fases = [];
+        let fase;
+        for(let i = 0, n = configuracoesDeFases.length;i < n; i++) {
+            fase = new Fase(configuracoesDeFases[i])
+            fase.preload();
+            this.fases.push(fase);
+        }
 
         this.somDoPulo = loadSound('assets/sounds/pulo.wav');
         this.sonsDeColisao =[
@@ -74,11 +74,11 @@ class CenaFase {
     }
 
     setup() {
-        //console.log("CenaFase: setup")
-        this.cenarioCeu = new Cenario(this.imagemCenarioCeu, 4);
-        this.cenarioMontanhas = new Cenario(this.imagemCenarioMontanhas, 6);
-        this.cenarioArvores = new Cenario(this.imagemCenarioArvores, 8);
-        this.cenarioChao = new Cenario(this.imagemCenarioChao, 10);
+        let fase;
+        for(let i = 0, n = this.fases.length;i < n; i++) {
+            fase = this.fases[i];
+            fase.setup();
+        }
 
         this.personagem = new Personagem(
             this.imagemPersonagem, this.somDoPulo, 50,
@@ -88,12 +88,35 @@ class CenaFase {
 
         this.vidaPersonagem = new Vida(this.imagemVida, jogo.configuracoes.maximoDeVidas, jogo.configuracoes.vidasIniciais);
 
-        jogo.gerenciadorDeEventos.assinar("colidiu-com-inimigo", this, "colidiuComInimigo");
-        jogo.gerenciadorDeEventos.assinar("vida-acabou", this, "gameOver");
-
         this.gerenciadorDeMoedas.setup();
         this.gerenciadorDeInimigos.setup();
         this.gerenciadorDePontuacao.setup();
+        this.gerenciadorDePontuacao.novaFase(this.fases[this.faseAtual]);
+
+        jogo.gerenciadorDeEventos.assinar("colidiu-com-inimigo", this, "colidiuComInimigo");
+        jogo.gerenciadorDeEventos.assinar("vida-acabou", this, "gameOver");
+        jogo.gerenciadorDeEventos.assinar("aumentou-creu", this, "aumentouCreu");
+        jogo.gerenciadorDeEventos.assinar("acabou-a-fase", this, "passouDeFase");
+    }
+
+    passouDeFase() {
+
+        this.faseAnterior = this.faseAtual;
+        this.faseAtual++;
+
+        if(this.faseAtual == this.fases.length) {
+            this.faseAtual = 0;
+        }
+
+        this.fases[this.faseAnterior].saindoDeCena();
+        this.fases[this.faseAtual].reset();
+        this.fases[this.faseAtual].entrandoEmCena();
+
+        this.gerenciadorDePontuacao.novaFase(this.fases[this.faseAtual]);
+    }
+
+    aumentouCreu() {
+        console.log("Aumentou creu!");
     }
 
     reset() {
@@ -101,35 +124,30 @@ class CenaFase {
         if (!this.pause) {
             clear();
 
-            this.cenarioCeu.reset();
-            this.cenarioMontanhas.reset();
-            this.cenarioArvores.reset();
-            this.cenarioChao.reset();
+            this.fases[this.faseAtual].reset();
 
             this.personagem.reset();
+            this.personagem.tornaInvencivel();
             this.vidaPersonagem.reset();
 
             this.gerenciadorDeMoedas.setup();
             this.gerenciadorDeInimigos.setup();
-            this.gerenciadorDePontuacao.setup();
+            this.gerenciadorDePontuacao.setup(this.fases[this.faseAtual]);
             this.pause = false;
 
+        } else{
+            this.fases[this.faseAtual].resume();
         }
-        this.somDoJogo.loop();
         loop();
-
     }
 
     draw() {
-        //console.log("CenaFase: draw")
-        this.cenarioCeu.move();
-        this.cenarioCeu.draw();
-        this.cenarioMontanhas.move();
-        this.cenarioMontanhas.draw();
-        this.cenarioArvores.move();
-        this.cenarioArvores.draw();
-        this.cenarioChao.move();
-        this.cenarioChao.draw();
+
+        if(this.faseAtual != this.faseAnterior && !this.fases[this.faseAtual].transicao.acabou()) {
+            this.fases[this.faseAnterior].draw();
+        }
+
+        this.fases[this.faseAtual].draw();
 
         this.gerenciadorDeMoedas.estaColidindo(this.personagem);
         this.gerenciadorDeMoedas.draw();
@@ -148,9 +166,8 @@ class CenaFase {
     }
 
     sceneEnd() {
-        //console.log("CenaFase: sceneEnd");
-        this.somDoJogo.stop();
         if (this.pause) {
+            this.fases[this.faseAtual].pause();
             return "cenaPause";
         }
 
@@ -158,9 +175,9 @@ class CenaFase {
     }
 
     colidiuComInimigo() {
-        //console.log("COLIDIU")
         this.vidaPersonagem.perdeVida();
         this.personagem.foiAtingido();
+        //TODO Verificar se isso ainda é necessario
         this.pause = false;
     }
 
@@ -169,8 +186,6 @@ class CenaFase {
     }
 
     keyPressed(key) {
-
-        //console.log("CenaFase: keyPressed");
         if (key === 'ArrowUp') {
             this.personagem.pula();
         }
@@ -178,7 +193,6 @@ class CenaFase {
             this.pause = true;
             jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
         }
-
     }
 
     mousePressed(mouseX, mouseY) {
@@ -188,7 +202,5 @@ class CenaFase {
         if (mouseButton === RIGHT) {
             this.togglePause();
         }
-
     }
-
 }
