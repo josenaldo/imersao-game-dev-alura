@@ -16,6 +16,8 @@ class Configuracoes {
         this.font = null;
 
         this.colisaoInimigoLigada = true;
+        this.maximoDeVidas = 9;
+        this.vidasIniciais = 3;
     }
 
     preload() {

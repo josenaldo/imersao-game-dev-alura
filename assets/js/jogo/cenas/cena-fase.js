@@ -22,6 +22,8 @@ class CenaFase {
         // Personagem
         this.imagemPersonagem = null;
         this.personagem = null;
+        this.imagemVida = null;
+        this.vidaPersonagem = null;
 
         //Inimigos
         this.gerenciadorDeInimigos = null;
@@ -48,6 +50,7 @@ class CenaFase {
         this.somDoPulo = loadSound('assets/sounds/pulo.wav');
 
         this.imagemPersonagem = loadImage('assets/images/personagem/piroto.png');
+        this.imagemVida = loadImage('assets/images/personagem/vida.png');
 
         this.gerenciadorDeInimigos = new GerenciadorDeInimigos();
         this.gerenciadorDeInimigos.preload();
@@ -70,8 +73,10 @@ class CenaFase {
             this.imagemPersonagem, this.somDoPulo, 50,
             jogo.configuracoes.alturaDoChao,
             210, 252, 420, 504, 4, 4);
+        this.vidaPersonagem = new Vida(this.imagemVida, jogo.configuracoes.maximoDeVidas, jogo.configuracoes.vidasIniciais);
 
         jogo.gerenciadorDeEventos.assinar("colidiu-com-inimigo", this, "colidiuComInimigo");
+        jogo.gerenciadorDeEventos.assinar("vida-acabou", this, "gameOver");
 
         this.gerenciadorDeMoedas.setup();
         this.gerenciadorDeInimigos.setup();
@@ -89,6 +94,7 @@ class CenaFase {
             this.cenarioChao.reset();
 
             this.personagem.reset();
+            this.vidaPersonagem.reset();
 
             this.gerenciadorDeMoedas.setup();
             this.gerenciadorDeInimigos.setup();
@@ -116,6 +122,7 @@ class CenaFase {
         this.gerenciadorDeMoedas.draw();
 
         this.personagem.draw();
+        this.vidaPersonagem.draw();
 
         this.gerenciadorDePontuacao.pontuarPorDistancia();
         this.gerenciadorDePontuacao.draw();
@@ -139,7 +146,11 @@ class CenaFase {
 
     colidiuComInimigo() {
         //console.log("COLIDIU")
+        this.vidaPersonagem.perdeVida();
         this.pause = false;
+    }
+
+    gameOver() {
         jogo.gerenciadorDeEventos.publicar("cena-terminada", this);
     }
 

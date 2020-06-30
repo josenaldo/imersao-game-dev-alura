@@ -4,7 +4,6 @@ class Jogo {
         this.gerenciadorDeCenas = new GerenciadorDeCenas();
         this.gerenciadorDeEventos = new GerenciadorDeEventos();
         this.gerenciadorDePontuacao = new GerenciadorDePontuacao();
-
         this.configuracoes = new Configuracoes();
     }
 

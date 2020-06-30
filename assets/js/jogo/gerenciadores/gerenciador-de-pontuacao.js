@@ -18,6 +18,7 @@ class GerenciadorDePontuacao {
         this.pontuacaoPorDistanciaInicial = 0.25;
         this.font = null;
         this.nomesCompletados = 0;
+        this.vida = null;
     }
 
     preload() {
@@ -36,20 +37,21 @@ class GerenciadorDePontuacao {
     }
 
     setup() {
-        this.resetNomeDoCapeta();
-        this.pontos = 0;
-        this.creu = 1;
+        this.reset();
         this.marcos = [10, 25, 50, 100, 200, 500];
         this.pontuacaoPorPalavra = 100;
         this.pontuacaoPorDistancia = this.pontuacaoPorDistanciaInicial;
         this.nomesCompletados = 0;
     }
 
-    resetNomeDoCapeta() {
+    reset() {
         this.palavra = this.getNomeAleatorio();
         this.wordDashes = [];
         this.wordDashes = "_".repeat(this.palavra.length).split("")
         this.contadorDeMoedas = 0;
+        this.vida = new Vida();
+        this.pontos = 0;
+        this.creu = 1;
     }
 
 
@@ -80,7 +82,6 @@ class GerenciadorDePontuacao {
     // TODO Adicionar powerUp que dá mais pontuacao por distancia
     pontuarPorDistancia(){
         this.pontos = this.pontos + this.pontuacaoPorDistancia;
-
     }
 
     pegouMoeda() {
@@ -90,7 +91,7 @@ class GerenciadorDePontuacao {
         if(this.getWordDashes() === this.palavra) {
             this.pontos += this.palavra.length * this.pontuacaoPorPalavra;
             this.nomesCompletados++;
-            this.resetNomeDoCapeta();
+            this.reset();
             this.verificaMarco();
         }
 

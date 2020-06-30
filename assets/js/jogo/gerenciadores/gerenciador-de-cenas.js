@@ -19,7 +19,6 @@ class GerenciadorDeCenas {
         }
 
         this.cenaAtual = 'cenaInicial';
-
     }
 
     preload() {
